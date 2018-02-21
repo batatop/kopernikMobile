@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { pColor, pLightColor, sColor, tLightColor } from "./src/style/colors"
 
@@ -28,9 +29,24 @@ const HomeNavigator = StackNavigator(
 
 const RootNavigator = TabNavigator(
     {
-        Home: { screen: HomeNavigator },
-        Calendar: { screen: Calendar },
-        Gallery: { screen: Gallery },
+        Home: {
+            screen: HomeNavigator,
+            navigationOptions: {
+                tabBarLabel: "Home",
+            }
+        },
+        Calendar: {
+            screen: Calendar,
+            navigationOptions: {
+                tabBarLabel: "Calendar",
+            }
+        },
+        Gallery: {
+            screen: Gallery,
+            navigationOptions: {
+                tabBarLabel: "Gallery",
+            }
+        },
     },
     {
         tabBarPosition: "bottom",
