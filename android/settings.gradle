@@ -1,0 +1,3 @@
+rootProject.name = 'kopernikMobile'
+
+include ':app'
