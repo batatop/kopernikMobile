@@ -1,16 +1,34 @@
 import React from 'react';
-import { TouchableHighlight, Image, Text, Dimensions } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { pColor, pLightColor, sColor, tLightColor } from "./src/style/colors"
 
 import Calendar from "./src/screens/Calendar"
 import Gallery from "./src/screens/Gallery"
 import Home from "./src/screens/Home"
+import Post from "./src/screens/Post"
 
-import { pLightColor, sColor } from "./src/style/colors"
+
+const HomeNavigator = StackNavigator(
+    {
+        Home: { screen: Home },
+        Post: { screen: Post },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                color: tLightColor
+            },
+            headerTintColor: tLightColor
+        }
+    }
+)
 
 const RootNavigator = TabNavigator(
     {
-        Home: { screen: Home },
+        Home: { screen: HomeNavigator },
         Calendar: { screen: Calendar },
         Gallery: { screen: Gallery },
     },
@@ -18,9 +36,10 @@ const RootNavigator = TabNavigator(
         tabBarPosition: "bottom",
         tabBarOptions: {
             style: {
-                backgroundColor: pLightColor
+                backgroundColor: pLightColor,
             },
             labelStyle: {
+                color: tLightColor,
                 fontWeight: "bold"
             },
             indicatorStyle: {
@@ -32,7 +51,9 @@ const RootNavigator = TabNavigator(
 
 class App extends React.Component {
     render() {
-        return <RootNavigator />
+        return (
+            <RootNavigator />
+        )
     }
 }
 

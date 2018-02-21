@@ -1,21 +1,15 @@
 import React from 'react';
-import { View, Text, FlatList, Image } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
+import glamorous from "glamorous-native";
+import { backgroundColor } from "../style/colors"
 
-class PostItem extends React.Component {
-    render() {
-        return (
-            <View>
-                <Text>{this.props.title}</Text>
-                <Image
-                    style={{ height: 50, width: 50 }}
-                    source={{ uri: this.props.img }}
-                />
-            </View>
-        )
-    }
-}
+import PostItem from "../elements/PostItem"
 
 export default class Home extends React.Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: "Home", 
+    });
+
     componentWillMount() {
         this.setState({
             posts: null
@@ -53,18 +47,24 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <View>
+            <Container>
                 <FlatList
                     data={this.getPosts()}
                     renderItem={({ item }) =>
                         <PostItem
+                            navigation={this.props.navigation}
                             key={item.key}
                             title={item.title}
                             img={item.img}
                         />
                     }
                 />
-            </View>
+            </Container>
         );
     }
 }
+
+const Container = glamorous.safeAreaView({
+    flex: 1,
+    backgroundColor: backgroundColor
+})
