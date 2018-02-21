@@ -16,3 +16,5 @@ export const tDarkColor = "#000000";
 
 // default colors
 export const backgroundColor = "#f8f8ff"
+export const black = "#000000"
+export const grey = "#9E9E9E"
