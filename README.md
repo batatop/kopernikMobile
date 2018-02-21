@@ -11,7 +11,7 @@ cd kopernikMobile
 npm install
 ```
 
-After you install the dependencies, go to '''node_modules/glamorous-native/src''' 
+After you install the dependencies, go to ```node_modules/glamorous-native/src```
 folder. Find react-native-elements.js and change the file with the following:
 ```
 import {
