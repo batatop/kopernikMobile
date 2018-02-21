@@ -5,15 +5,15 @@ Mobile application of Kopernik Observatory & Science Center. It's made with
 
 ## Installation
 
-'''
+```
 git clone https://github.com/batatop/kopernikMobile.git
 cd kopernikMobile
 npm install
-'''
+```
 
 After you install the dependencies, go to node_modules/glamorous-native/src 
 folder. Find react-native-elements.js and change the file with the following:
-'''
+```
 import {
   FlatList,
   Image,
@@ -68,6 +68,6 @@ if (WebView) {
 }
 
 export default Object.keys(ReactNativeElementMap)
-'''
+```
 
 [React Native]:https://github.com/facebook/react-native
