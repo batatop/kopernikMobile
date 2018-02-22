@@ -70,7 +70,7 @@ const ItemContentSide = glamorous.view({
 })
 
 const ItemImage = glamorous.image({
-    margin: 8,
+    margin: 10,
     height: 80,
     width: 80,
     borderWidth: 1,
