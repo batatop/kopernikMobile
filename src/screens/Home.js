@@ -30,11 +30,12 @@ export default class Home extends React.Component {
     getPosts() {
         let p = []
         if (this.state.posts != null) {
-            for (let i = 0; i < this.state.posts.length; i++) {
+            for (let i = 0; i < this.state.posts.length; i++) {       
                 let newPost = {}
                 newPost.key = this.state.posts[i].id.toString()
                 newPost.title = this.state.posts[i].title.rendered
                 newPost.img = this.state.posts[i]._embedded["wp:featuredmedia"][0].source_url
+                newPost.content = this.state.posts[i].content.rendered
                 p.push(newPost)
             }
             return p
@@ -53,9 +54,7 @@ export default class Home extends React.Component {
                     renderItem={({ item }) =>
                         <PostItem
                             navigation={this.props.navigation}
-                            key={item.key}
-                            title={item.title}
-                            img={item.img}
+                            post={item}
                         />
                     }
                 />

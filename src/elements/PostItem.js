@@ -12,20 +12,20 @@ export default class PostItem extends React.Component {
     getTitle() {
         // let title = decodeURI(this.props.title)
         let title = "<p style='text-align: center;'" + this.props.title + "</p>"
-        console.log(title)
         return this.props.title
     }
 
     render() {
         return (
-            <ItemHighlight onPress={() => this.props.navigation.navigate("Post")}>
+            <ItemHighlight onPress={() => this.props.navigation.navigate("Post", { post: this.props.post })}>
                 <ItemView>
                     <ItemIconSide>
-                        <ItemImage source={{ uri: this.props.img }} />
+                        <ItemImage source={{ uri: this.props.post.img }} />
                     </ItemIconSide>
                     <ItemContentSide>
                         <HTMLView
-                            value={this.props.title}
+                            value={`<div>${this.props.post.title}</div>`}
+                            stylesheet={{ div: { fontSize: 15 } }}
                         />
                     </ItemContentSide>
                 </ItemView>
@@ -66,8 +66,5 @@ const ItemImage = glamorous.image({
     width: 80,
     borderWidth: 1,
     borderColor: grey,
-})
-
-const ItemText = glamorous.webView({
-    backgroundColor: backgroundColor,
+    resizeMode: 'contain',
 })
