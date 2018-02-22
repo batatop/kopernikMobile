@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { backgroundColor, tDarkColor, black, grey, tBlack } from "../style/colors"
+import { backgroundColor, tDarkColor, black, grey, tBlack,sColor } from "../style/colors"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -25,7 +25,14 @@ export default class PostItem extends React.Component {
                     <ItemContentSide>
                         <HTMLView
                             value={`<div>${this.props.post.title}</div>`}
-                            stylesheet={{ div: { fontSize: 15 } }}
+                            stylesheet={{
+                                div: {
+                                    fontSize: 15
+                                },
+                                a: {
+                                    color: sColor,
+                                }
+                            }}
                         />
                     </ItemContentSide>
                 </ItemView>

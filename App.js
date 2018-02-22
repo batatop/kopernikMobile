@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, Dimensions } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { pColor, pLightColor, sColor, tLightColor } from "./src/style/colors"
 
@@ -20,7 +20,8 @@ const HomeNavigator = StackNavigator(
                 backgroundColor: pColor,
             },
             headerTitleStyle: {
-                color: tLightColor
+                width: Dimensions.get('window').width,
+                color: tLightColor,
             },
             headerTintColor: tLightColor
         }
@@ -56,7 +57,8 @@ const RootNavigator = TabNavigator(
             },
             labelStyle: {
                 color: tLightColor,
-                fontWeight: "bold"
+                fontWeight: "bold",
+                width: Dimensions.get('window').width,
             },
             indicatorStyle: {
                 backgroundColor: sColor

@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar } from 'react-native';
 import glamorous from "glamorous-native";
-import { backgroundColor } from "../style/colors"
+import { backgroundColor, pDarkColor } from "../style/colors"
 
 import PostItem from "../elements/PostItem"
 
@@ -49,6 +49,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container>
+                <StatusBar
+                    backgroundColor={pDarkColor}
+                    barStyle="light-content"
+                />
                 <FlatList
                     data={this.getPosts()}
                     renderItem={({ item }) =>
