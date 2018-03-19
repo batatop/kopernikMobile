@@ -3,15 +3,15 @@ import { SafeAreaView, Text } from 'react-native';
 import glamorous from "glamorous-native";
 import { backgroundColor, pDarkColor } from "../style/colors"
 
-export default class Calendar extends React.Component {
+export default class GalleryImage extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        title: "Calendar",
+        title: "Image",
     });
 
     render() {
         return (
             <Container>
-                <Text>Calendar</Text>
+                <Text>Gallery Image</Text>
             </Container>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
-import { backgroundColor, pDarkColor } from "../style/colors"
+import { backgroundColor, pDarkColor, highlightColor } from "../style/colors"
 
 export default class Calendar extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -42,17 +42,14 @@ export default class Calendar extends React.Component {
                 });
             }
         });
-
-        this.setState({
-            images: []
-        })
     }
     
     listImages() {
+        let self = this
         let index = this.state.loadingIndex
 
         let bufferImages = this.state.images.filter((imgUrl) => {
-            if (index <= this.state.loadingIndex + 15) {
+            if (index <= this.state.loadingIndex + 17) {
                 index++
                 return true
             }
@@ -62,7 +59,15 @@ export default class Calendar extends React.Component {
         });
 
         let listView = bufferImages.map(function (imgUrl, i) {
-            return <ListImage key={'image_' + i} source={{ uri: imgUrl }} />
+            return(
+                <TouchableHighlight
+                    key={'image_' + i}
+                    onPress={() => self.props.navigation.navigate("GalleryImage")}
+                    underlayColor={highlightColor}
+                >
+                    <ListImage source={{ uri: imgUrl }} />
+                </TouchableHighlight>
+            )
         });
 
         return listView;

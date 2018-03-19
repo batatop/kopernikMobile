@@ -6,6 +6,7 @@ import { pColor, pLightColor, sColor, tLightColor } from "./src/style/colors"
 import Calendar from "./src/screens/Calendar"
 import Gallery from "./src/screens/Gallery"
 import Home from "./src/screens/Home"
+import GalleryImage from "./src/screens/GalleryImage"
 import Post from "./src/screens/Post"
 
 
@@ -49,6 +50,7 @@ const CalendarNavigator = StackNavigator(
 const GalleryNavigator = StackNavigator(
     {
         Gallery: { screen: Gallery },
+        GalleryImage: { screen: GalleryImage },
     },
     {
         navigationOptions: {
