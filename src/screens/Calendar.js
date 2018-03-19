@@ -1,20 +1,25 @@
 import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
-import { pDarkColor } from "../style/colors"
+import { SafeAreaView, Text } from 'react-native';
+import glamorous from "glamorous-native";
+import { backgroundColor, pDarkColor } from "../style/colors"
 
+import PostItem from "../elements/PostItem"
 
-class Calendar extends React.Component {
+export default class Calendar extends React.Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: "Calendar",
+    });
+
     render() {
         return (
-            <View>
-                <StatusBar
-                    backgroundColor={pDarkColor}
-                    barStyle="light-content"
-                />
+            <Container>
                 <Text>Calendar</Text>
-            </View>
-        )
+            </Container>
+        );
     }
 }
 
-export default () => <Calendar />;
+const Container = glamorous.safeAreaView({
+    flex: 1,
+    backgroundColor: backgroundColor
+})

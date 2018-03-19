@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StatusBar } from 'react-native';
+    import { SafeAreaView, FlatList, StatusBar, ScrollView, Text } from 'react-native';
 import glamorous from "glamorous-native";
 import { backgroundColor, pDarkColor } from "../style/colors"
 
@@ -7,7 +7,7 @@ import PostItem from "../elements/PostItem"
 
 export default class Home extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        title: "Home", 
+        title: "Kopernik", 
     });
 
     componentWillMount() {
@@ -43,31 +43,36 @@ export default class Home extends React.Component {
         else {
             return []
         }
-
     }
 
     render() {
         return (
             <Container>
-                <StatusBar
-                    backgroundColor={pDarkColor}
-                    barStyle="light-content"
-                />
-                <FlatList
-                    data={this.getPosts()}
-                    renderItem={({ item }) =>
-                        <PostItem
-                            navigation={this.props.navigation}
-                            post={item}
-                        />
-                    }
-                />
+                <ScrollContainer>
+                    <StatusBar
+                        backgroundColor={pDarkColor}
+                        barStyle="light-content"
+                    />
+                    <FlatList
+                        data={this.getPosts()}
+                        renderItem={({ item }) =>
+                            <PostItem
+                                navigation={this.props.navigation}
+                                post={item}
+                            />
+                        }
+                    />
+                </ScrollContainer>
             </Container>
         );
     }
 }
 
 const Container = glamorous.safeAreaView({
+    flex: 1,
+})
+
+const ScrollContainer = glamorous.scrollView({
     flex: 1,
     backgroundColor: backgroundColor
 })

@@ -28,6 +28,42 @@ const HomeNavigator = StackNavigator(
     }
 )
 
+const CalendarNavigator = StackNavigator(
+    {
+        Calendar: { screen: Calendar },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: tLightColor,
+            },
+            headerTintColor: tLightColor
+        }
+    }
+)
+
+const GalleryNavigator = StackNavigator(
+    {
+        Gallery: { screen: Gallery },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: tLightColor,
+            },
+            headerTintColor: tLightColor
+        }
+    }
+)
+
 const RootNavigator = TabNavigator(
     {
         Home: {
@@ -37,13 +73,13 @@ const RootNavigator = TabNavigator(
             }
         },
         Calendar: {
-            screen: Calendar,
+            screen: CalendarNavigator,
             navigationOptions: {
                 tabBarLabel: "Calendar",
             }
         },
         Gallery: {
-            screen: Gallery,
+            screen: GalleryNavigator,
             navigationOptions: {
                 tabBarLabel: "Gallery",
             }
