@@ -49,7 +49,7 @@ export default class Home extends React.Component {
         return (
             <Container>
                 <ScrollContainer>
-                    <MainImage source={require('../style/assets/home.jpg')} />
+                    <MainImage source={require('../style/assets/homeImg.jpg')} />
                     <FlatList
                         data={this.getPosts()}
                         renderItem={({ item }) =>
