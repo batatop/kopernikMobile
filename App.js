@@ -9,7 +9,6 @@ import Home from "./src/screens/Home"
 import GalleryImage from "./src/screens/GalleryImage"
 import Post from "./src/screens/Post"
 
-
 const HomeNavigator = StackNavigator(
     {
         Home: { screen: Home },
@@ -91,7 +90,7 @@ const RootNavigator = TabNavigator(
         tabBarPosition: "bottom",
         tabBarOptions: {
             style: {
-                backgroundColor: pLightColor,
+                backgroundColor: pColor,
             },
             labelStyle: {
                 color: tLightColor,

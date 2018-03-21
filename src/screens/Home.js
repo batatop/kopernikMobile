@@ -1,7 +1,7 @@
 import React from 'react';
-    import { SafeAreaView, FlatList, StatusBar, ScrollView, Text } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar, ScrollView, Text } from 'react-native';
 import glamorous from "glamorous-native";
-import { backgroundColor, pDarkColor } from "../style/colors"
+import { bColor, pDarkColor } from "../style/colors"
 
 import PostItem from "../elements/PostItem"
 
@@ -49,10 +49,7 @@ export default class Home extends React.Component {
         return (
             <Container>
                 <ScrollContainer>
-                    <StatusBar
-                        backgroundColor={pDarkColor}
-                        barStyle="light-content"
-                    />
+                    <MainImage source={require('../style/assets/home.jpg')} />
                     <FlatList
                         data={this.getPosts()}
                         renderItem={({ item }) =>
@@ -74,5 +71,13 @@ const Container = glamorous.safeAreaView({
 
 const ScrollContainer = glamorous.scrollView({
     flex: 1,
-    backgroundColor: backgroundColor
+    backgroundColor: bColor
+})
+
+const MainImage = glamorous.image({
+    flex: 1,
+    height: 120,
+    maxHeight: 120,
+    maxWidth: "100%",
+    overflow: "hidden"
 })

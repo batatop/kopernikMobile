@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import glamorous from "glamorous-native";
-import { backgroundColor, pDarkColor } from "../style/colors"
+import { bColor, pDarkColor } from "../style/colors"
 
 export default class GalleryImage extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -19,5 +19,5 @@ export default class GalleryImage extends React.Component {
 
 const Container = glamorous.safeAreaView({
     flex: 1,
-    backgroundColor: backgroundColor
+    backgroundColor: bColor
 })

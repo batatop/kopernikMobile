@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
-import { backgroundColor, pDarkColor, highlightColor } from "../style/colors"
+import { bColor, pDarkColor, highlightColor } from "../style/colors"
 
 export default class Calendar extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -81,9 +81,7 @@ export default class Calendar extends React.Component {
                         backgroundColor={pDarkColor}
                         barStyle="light-content"
                     />
-
                     {this.listImages()}
-
                 </ScrollContainer>
             </Container>
         );
@@ -101,7 +99,7 @@ const ScrollContainer = glamorous.safeAreaView({
     justifyContent: 'space-between',
     alignItems: 'stretch',
     flexWrap: 'wrap',
-    backgroundColor: backgroundColor,
+    backgroundColor: bColor,
 })
 
 const ListImage = glamorous.image({

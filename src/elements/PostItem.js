@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { backgroundColor, tDarkColor, black, grey, tBlack,sColor, highlightColor } from "../style/colors"
+import { bLightColor, tDarkColor, black, grey, tBlack,sColor, highlightColor } from "../style/colors"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -52,7 +52,7 @@ const ItemHighlight = glamorous.touchableHighlight({
     shadowColor: black,
     shadowOpacity: 1,
     elevation: 5,
-    backgroundColor: backgroundColor
+    backgroundColor: bLightColor
 })
 
 const ItemView = glamorous.view({

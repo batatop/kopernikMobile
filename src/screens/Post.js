@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { backgroundColor, pColor, sColor, pDarkColor } from "../style/colors"
+import { bColor, pColor, sColor, pDarkColor } from "../style/colors"
 
 import PostItem from "../elements/PostItem"
 
@@ -52,7 +52,7 @@ export default class Post extends React.Component {
 
 const Container = glamorous.safeAreaView({
     flex: 1,
-    backgroundColor: backgroundColor
+    backgroundColor: bColor
 })
 
 const PostImage = glamorous.image({
