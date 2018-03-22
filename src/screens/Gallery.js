@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, highlightColor } from "../style/colors"
 
@@ -43,30 +43,50 @@ export default class Calendar extends React.Component {
             }
         });
     }
-    
-    listImages() {
+
+    rowImages(images, rowIndex) {
         let self = this
-        let index = this.state.loadingIndex
-
-        let bufferImages = this.state.images.filter((imgUrl) => {
-            if (index <= this.state.loadingIndex + 17) {
-                index++
-                return true
-            }
-            else {
-                return false
-            }
-        });
-
-        let listView = bufferImages.map(function (imgUrl, i) {
-            return(
-                <TouchableHighlight
-                    key={'image_' + i}
-                    onPress={() => self.props.navigation.navigate("GalleryImage")}
+        
+        let rowImages = images.map(function (imgUrl, i) {
+            return (
+                <ImageContainer
+                    key={"image_"+rowIndex+"."+i}
+                    // onPress={() => self.props.navigation.navigate("GalleryImage")} // navigasyonu demo için kapadım
                     underlayColor={highlightColor}
                 >
                     <ListImage source={{ uri: imgUrl }} />
-                </TouchableHighlight>
+                </ImageContainer>
+            )
+        });
+
+        return rowImages
+    }
+    
+    listImages() {
+        let self = this
+        let images = []
+
+        let tmpImages = []
+        // for (let i = 0; i < this.state.images.length; i++) {
+        // şu anlık resimlerin hepsini yüklemesin diye i<20 yaptım
+        // aslında this.state.images.length olması lazım
+        for(let i = 1; i<20; i++) {
+            // şu an bozuk, i%3 != 0'sa images'a eklemiyor
+            if (i%3 == 0) {
+                tmpImages.push(this.state.images[i-1])
+                images.push(tmpImages)
+                tmpImages = []
+            }
+            else {
+                tmpImages.push(this.state.images[i-1])
+            }
+        }
+
+        let listView = images.map(function (imgSubset, i) {
+            return(
+                <Row key={"row_"+i}>
+                    {self.rowImages(imgSubset, i)}
+                </Row>
             )
         });
 
@@ -76,13 +96,13 @@ export default class Calendar extends React.Component {
     render() {
         return (
             <Container>
-                <ScrollContainer>
-                    <StatusBar
-                        backgroundColor={pDarkColor}
-                        barStyle="light-content"
-                    />
+                <StatusBar
+                    backgroundColor={pDarkColor}
+                    barStyle="light-content"
+                />
+                <Column>
                     {this.listImages()}
-                </ScrollContainer>
+                </Column>
             </Container>
         );
     }
@@ -92,23 +112,27 @@ const Container = glamorous.scrollView({
     flex: 1,
 })
 
-const ScrollContainer = glamorous.safeAreaView({
+const Row = glamorous.view({
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start', 
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-    flexWrap: 'wrap',
     backgroundColor: bColor,
 })
 
+const Column = glamorous.view({
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: bColor,
+})
+
+const ImageContainer = glamorous.touchableHighlight({
+    flex: 1,
+    backgroundColor: bColor,
+    margin: 1,
+})
+
 const ListImage = glamorous.image({
+    flex: 1,
     height: 120,
-    width: 120,
-    marginLeft: 6,
-    marginRight: 6,
-    marginTop: 3,
-    marginBottom: 3,
 })
 
 // style={{ margin: 15, flex: 1, flexDirection: 'row', justifyContent: 'flex-start', justifyContent: 'space-between', alignItems: 'stretch', flexWrap: 'wrap' }}
