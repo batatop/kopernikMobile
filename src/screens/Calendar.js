@@ -1,9 +1,10 @@
 import React from 'react';
 import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor, highlightColor } from "../style/colors"
+import { Calendar, Agenda } from 'react-native-calendars';
+import { bColor, pColor } from "../style/colors"
 
-export default class Calendar extends React.Component {
+export default class AppCalendar extends React.Component {
     static navigationOptions = ({ navigation }) => ({
         title: "Gallery",
     });
@@ -15,28 +16,18 @@ export default class Calendar extends React.Component {
         })
     }
 
-    componentDidMount() {
-        let calendar = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key={AIzaSyDUa-1pt439wXjBEfWrazbubrthUI0pg6M}"
-        fetch(calendar)
-        .then((res) => { return res })
-        .then((res2) => {
-            console.log(res2)
-        });
-    }
-
     render() {
         return (
-            <Container>
-                <ScrollContainer>
-                    <Text>Calendar</Text>
-                </ScrollContainer>
-            </Container>
+            <Agenda
+                style={{height: "100%"}}
+            />
         );
     }
 }
 
 const Container = glamorous.scrollView({
     flex: 1,
+    backgroundColor: "red"
 })
 
 const ScrollContainer = glamorous.safeAreaView({
