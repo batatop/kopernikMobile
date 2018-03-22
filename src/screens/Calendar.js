@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
-import { bColor, pColor } from "../style/colors"
+import { bColor, pColor, pLightColor } from "../style/colors"
 
 export default class AppCalendar extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -21,6 +21,11 @@ export default class AppCalendar extends React.Component {
         return (
             <Agenda
                 style={{height: "100%"}}
+                theme={{
+                    selectedDayBackgroundColor: pColor,
+                    todayTextColor: pLightColor,
+                    agendaKnobColor: pColor
+                }}
             />
         );
     }
@@ -28,7 +33,6 @@ export default class AppCalendar extends React.Component {
 
 const Container = glamorous.scrollView({
     flex: 1,
-    backgroundColor: "red"
 })
 
 const ScrollContainer = glamorous.safeAreaView({
