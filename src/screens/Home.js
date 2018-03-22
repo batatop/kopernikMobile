@@ -48,6 +48,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container>
+                <StatusBar
+                    backgroundColor={pDarkColor}
+                    barStyle="light-content"
+                />
                 <ScrollContainer>
                     <MainImage source={require('../style/assets/homeImg.jpg')} />
                     <FlatList
