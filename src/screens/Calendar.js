@@ -10,9 +10,10 @@ export default class AppCalendar extends React.Component {
     });
 
     componentWillMount() {
-        this.setState({
-            images: [],
-            loadingIndex: 0,
+        let calendar = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU"
+        fetch(calendar)
+        .then((res) => {
+            console.log(res)
         })
     }
 
