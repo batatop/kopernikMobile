@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { bColor, pColor, sColor, pDarkColor, highlightColor } from "../style/colors"
+import { bColor, pColor, sColor, pDarkColor, hColor } from "../style/colors"
 
 export default class About extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -11,7 +11,7 @@ export default class About extends React.Component {
             <TouchableHighlight
                 style={{ padding: 18 }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
-                underlayColor={highlightColor}
+                underlayColor={hColor}
             >
                 <Image source={require("../assets/menuIcon.png")} />
             </TouchableHighlight>

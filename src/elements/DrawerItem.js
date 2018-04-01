@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableHighlight, Text, View} from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import glamorous from "glamorous-native"
-import { highlightColor, pLightColor, tLightColor, sColor, white, hBarColor } from "../style/colors"
+import { pLightColor, tLightColor, sColor, white, hBarColor } from "../style/colors"
 
 export default class DrawerItem extends React.Component {
     navigateToScreen(route) {

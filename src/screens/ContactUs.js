@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor, highlightColor } from "../style/colors"
+import { bColor, pDarkColor } from "../style/colors"
 
 export default class ContactUs extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({

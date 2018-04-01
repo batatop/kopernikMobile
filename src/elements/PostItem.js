@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { bLightColor, tDarkColor, black, grey, tBlack,sColor, highlightColor } from "../style/colors"
+import { bLightColor, tDarkColor, black, grey, tBlack,sColor, hColor } from "../style/colors"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -18,7 +18,7 @@ export default class PostItem extends React.Component {
         return (
             <ItemHighlight
                 onPress={() => this.props.navigation.navigate("Post", { post: this.props.post })}
-                underlayColor= {highlightColor}
+                underlayColor= {hColor}
             >
                 <ItemView>
                     <ItemIconSide>
