@@ -61,7 +61,7 @@ const NotSelectedTitle = glamorous.text({
     fontSize: 15,
     color: tLightColor,
     fontWeight: "bold",
-    marginLeft: 18
+    marginLeft: 10
 })
 
 const SelectedItem = glamorous.text({
