@@ -4,8 +4,17 @@ import glamorous from "glamorous-native";
 import { bColor, pDarkColor, highlightColor } from "../style/colors"
 
 export default class Calendar extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Gallery",
+        headerLeft: (
+            <TouchableHighlight
+                style={{ padding: 18 }}
+                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
+                underlayColor={highlightColor}
+            >
+                <Image source={require("../assets/menuIcon.png")} />
+            </TouchableHighlight>
+        ),
     });
 
     componentWillMount() {

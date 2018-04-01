@@ -1,9 +1,14 @@
 import React from 'react';
 import { Image, Dimensions } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import { pColor, pLightColor, sColor, tLightColor } from "./src/style/colors"
+import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation';
+import { pColor, pLightColor, sColor, tLightColor, white } from "./src/style/colors"
 
+import Drawer from "./src/elements/Drawer"
+
+import About from "./src/screens/About"
 import Calendar from "./src/screens/Calendar"
+import ClearSky from "./src/screens/ClearSky"
+import ContactUs from "./src/screens/ContactUs"
 import Gallery from "./src/screens/Gallery"
 import Home from "./src/screens/Home"
 import GalleryImage from "./src/screens/GalleryImage"
@@ -21,9 +26,9 @@ const HomeNavigator = StackNavigator(
             },
             headerTitleStyle: {
                 width: Dimensions.get('window').width,
-                color: tLightColor,
+                color: white,
             },
-            headerTintColor: tLightColor
+            headerTintColor: white
         }
     }
 )
@@ -39,9 +44,9 @@ const CalendarNavigator = StackNavigator(
             },
             headerTitleStyle: {
                 width: Dimensions.get('window').width,
-                color: tLightColor,
+                color: white,
             },
-            headerTintColor: tLightColor
+            headerTintColor: white
         }
     }
 )
@@ -58,37 +63,119 @@ const GalleryNavigator = StackNavigator(
             },
             headerTitleStyle: {
                 width: Dimensions.get('window').width,
-                color: tLightColor,
+                color: white,
             },
-            headerTintColor: tLightColor
+            headerTintColor: white
         }
     }
 )
 
-const RootNavigator = TabNavigator(
+const AboutNavigator = StackNavigator(
+    {
+        About: { screen: About },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: white,
+            },
+            headerTintColor: white
+        }
+    }
+)
+
+const ContactUsNavigator = StackNavigator(
+    {
+        ContactUs: { screen: ContactUs },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: white,
+            },
+            headerTintColor: white
+        }
+    }
+)
+
+const ClearSkyNavigator = StackNavigator(
+    {
+        ClearSky: { screen: ClearSky },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: white,
+            },
+            headerTintColor: white
+        }
+    }
+)
+
+const MainNavigator = TabNavigator(
     {
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
                 tabBarLabel: "Home",
+                tabBarIcon: ({ tintColor }) => (
+                    <Image
+                        source={require('./src/assets/homeIcon.png')}
+                    />
+                ),
             }
         },
         Calendar: {
             screen: CalendarNavigator,
             navigationOptions: {
                 tabBarLabel: "Calendar",
+                tabBarIcon: ({ tintColor }) => (
+                    <Image
+                        source={require('./src/assets/calendarIcon.png')}
+                    />
+                ),
             }
         },
         Gallery: {
             screen: GalleryNavigator,
             navigationOptions: {
                 tabBarLabel: "Gallery",
+                tabBarIcon: ({ tintColor }) => (
+                    <Image
+                        source={require('./src/assets/galleryIcon.png')}
+                    />
+                ),
+            }
+        },
+        ClearSky: {
+            screen: ClearSkyNavigator,
+            navigationOptions: {
+                tabBarLabel: "Clear Sky",
+                tabBarIcon: ({ tintColor }) => (
+                    <Image
+                        source={require('./src/assets/clearSkyIcon.png')}
+                    />
+                ),
             }
         },
     },
     {
         tabBarPosition: "bottom",
         tabBarOptions: {
+            showIcon: true,
+            showLabel: false,
             style: {
                 backgroundColor: pColor,
             },
@@ -101,6 +188,51 @@ const RootNavigator = TabNavigator(
                 backgroundColor: sColor
             }
         }
+    }
+)
+
+const RootNavigator = DrawerNavigator(
+    {
+        Main: {
+            screen: ({ navigation, screenProps }) =>
+                <MainNavigator
+                    screenProps={{
+                        rootNavigation: navigation
+                    }}
+                />,
+            navigationOptions: {
+                title: "Kopernik",
+            }
+
+        },
+        About: {
+            screen: ({ navigation, screenProps }) =>
+                <AboutNavigator
+                    screenProps={{
+                        rootNavigation: navigation
+                    }}
+                />,
+            navigationOptions: {
+                title: "About",
+            }
+
+        },
+        ContactUs: {
+            screen: ({ navigation, screenProps }) =>
+                <ContactUsNavigator
+                    screenProps={{
+                        rootNavigation: navigation
+                    }}
+                />,
+            navigationOptions: {
+                title: "Contact Us",
+            }
+
+        },
+    },
+    {
+        contentComponent: Drawer,
+        drawerWidth: 300
     }
 )
 

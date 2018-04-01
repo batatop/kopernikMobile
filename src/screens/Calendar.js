@@ -2,11 +2,20 @@ import React from 'react';
 import { SafeAreaView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
-import { bColor, pColor, pLightColor, pDarkColor } from "../style/colors"
+import { bColor, pColor, pLightColor, pDarkColor, highlightColor } from "../style/colors"
 
 export default class AppCalendar extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: "Gallery",
+    static navigationOptions = ({ screenProps, navigation }) => ({
+        title: "Calendar",
+        headerLeft: (
+            <TouchableHighlight
+                style={{ padding: 18 }}
+                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
+                underlayColor={highlightColor}
+            >
+                <Image source={require("../assets/menuIcon.png")} />
+            </TouchableHighlight>
+        ),
     });
 
     componentWillMount() {

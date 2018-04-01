@@ -1,13 +1,22 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StatusBar, ScrollView, Text } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar, ScrollView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor } from "../style/colors"
+import { bColor, pDarkColor, highlightColor } from "../style/colors"
 
 import PostItem from "../elements/PostItem"
 
 export default class Home extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: "Kopernik", 
+    static navigationOptions = ({ screenProps, navigation }) => ({
+        title: "Kopernik",
+        headerLeft: (
+            <TouchableHighlight
+                style={{ padding: 18 }}
+                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
+                underlayColor={highlightColor}
+            >
+                <Image source={require("../assets/menuIcon.png")} />
+            </TouchableHighlight>
+        ),
     });
 
     componentWillMount() {

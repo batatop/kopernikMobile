@@ -16,10 +16,14 @@ export const bLightColor = "#ffffff"
 export const bDarkColor = "#babdbe"
 
 // text colors
-export const tLightColor = "#ffffff";
+export const tLightColor = "#babdd8";
 export const tDarkColor = "#000000";
 
+// highlight colors
+export const hColor = "#dfdfe5"
+export const hBarColor = "#353d8e"
+
 // default colors
+export const white = "#ffffff"
 export const black = "#000000"
 export const grey = "#9E9E9E"
-export const highlightColor = "#dfdfe5"
