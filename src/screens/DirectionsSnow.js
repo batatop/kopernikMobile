@@ -3,7 +3,7 @@ import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
 
-export default class ContactUs extends React.Component {
+export default class DirectionsSnow extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Contact Us",
         headerLeft: (
@@ -20,7 +20,7 @@ export default class ContactUs extends React.Component {
     render() {
         return (
             <Container>
-                <Text>Contact Us</Text>
+                <Text>Snow Route</Text>
             </Container>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor, hColor } from "../style/colors"
+import { bColor, pDarkColor, hColor, hBarColor } from "../style/colors"
 
 export default class Calendar extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -10,7 +10,7 @@ export default class Calendar extends React.Component {
             <TouchableHighlight
                 style={{ padding: 18 }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
-                underlayColor={hColor}
+                underlayColor={hBarColor}
             >
                 <Image source={require("../assets/menuIcon.png")} />
             </TouchableHighlight>

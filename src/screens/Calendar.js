@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, ActivityIndicator, View, ListView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
-import { pColor, pLightColor, sColor } from "../style/colors"
+import { pColor, pLightColor, sColor, hBarColor } from "../style/colors"
 
 var today = new Date();
 var day = today.getDate();
@@ -18,11 +18,19 @@ if (month < 10) {
 }
 
 today = year + '-' + month + '-' + day;
-postsl = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-" + month + "-" + day + "T00:00:00Z&timeMax=" + year + 2 + "-" + "01-01T00:00:00Z"
 
 export default class AppCalendar extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Calendar",
+        headerLeft: (
+            <TouchableHighlight
+                style={{ padding: 18 }}
+                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
+                underlayColor={hBarColor}
+            >
+                <Image source={require("../assets/menuIcon.png")} />
+            </TouchableHighlight>
+        ),
     });
 
     constructor(props) {

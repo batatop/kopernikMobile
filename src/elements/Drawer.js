@@ -24,6 +24,12 @@ export default class Drawer extends React.Component {
                         activeRoute={this.props.activeItemKey}
                     />
                     <DrawerItem
+                        title="Directions"
+                        routeName="Directions"
+                        navigation={this.props.navigation}
+                        activeRoute={this.props.activeItemKey}
+                    />
+                    <DrawerItem
                         title="Contact Us"
                         routeName="ContactUs"
                         navigation={this.props.navigation}

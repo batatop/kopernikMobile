@@ -9,6 +9,8 @@ import About from "./src/screens/About"
 import Calendar from "./src/screens/Calendar"
 import ClearSky from "./src/screens/ClearSky"
 import ContactUs from "./src/screens/ContactUs"
+import DirectionsRegular from "./src/screens/DirectionsRegular"
+import DirectionsSnow from "./src/screens/DirectionsSnow"
 import Gallery from "./src/screens/Gallery"
 import Home from "./src/screens/Home"
 import GalleryImage from "./src/screens/GalleryImage"
@@ -124,6 +126,56 @@ const ClearSkyNavigator = StackNavigator(
     }
 )
 
+const DirectionsTabNavigator = TabNavigator(
+    {
+        RegularRoute: {
+            screen: DirectionsRegular,
+            navigationOptions: {
+                tabBarLabel: "Regular Route",
+            }
+        },
+        SnowRoute: {
+            screen: DirectionsSnow,
+            navigationOptions: {
+                tabBarLabel: "Snow Route",
+            }
+        },
+    },
+    {
+        tabBarOptions: {
+            style: {
+                backgroundColor: pColor,
+            },
+            labelStyle: {
+                color: tLightColor,
+                fontWeight: "bold",
+                width: Dimensions.get('window').width,
+            },
+            indicatorStyle: {
+                backgroundColor: sColor
+            }
+        }
+    }
+)
+
+const DirectionsNavigator = StackNavigator(
+    {
+        DirectionsTab: { screen: DirectionsTabNavigator },
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: pColor,
+            },
+            headerTitleStyle: {
+                width: Dimensions.get('window').width,
+                color: white,
+            },
+            headerTintColor: white
+        }
+    },
+)
+
 const MainNavigator = TabNavigator(
     {
         Home: {
@@ -227,7 +279,17 @@ const RootNavigator = DrawerNavigator(
             navigationOptions: {
                 title: "Contact Us",
             }
-
+        },
+        Directions: {
+            screen: ({ navigation, screenProps }) =>
+                <DirectionsNavigator
+                    screenProps={{
+                        rootNavigation: navigation
+                    }}
+                />,
+            navigationOptions: {
+                title: "Directions",
+            }
         },
     },
     {
