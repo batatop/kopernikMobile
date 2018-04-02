@@ -5,7 +5,7 @@ import { bColor, pDarkColor, hBarColor } from "../style/colors"
 
 export default class DirectionsSnow extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
-        title: "Contact Us",
+        title: "Directions",
         headerLeft: (
             <TouchableHighlight
                 style={{ padding: 18 }}
