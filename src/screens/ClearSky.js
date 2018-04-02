@@ -1,32 +1,76 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
+import { Image, WebView,Linking, SafeAreaView, ImageBackground, View, Text, StatusBar, AppRegistry, ScrollView, StyleSheet, TouchableHighlight, FlatList,Dimensions } from 'react-native';
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor, hColor } from "../style/colors"
+import { Calendar, Agenda } from 'react-native-calendars';
+import { bColor, pColor } from "../style/colors"
+import request from 'superagent'
+//import Image from 'react-native-transformable-image'
+import HTML from 'react-native-render-html';
+import PhotoView from 'react-native-photo-view';
 
-export default class ClearSky extends React.Component {
-    static navigationOptions = ({ screenProps, navigation }) => ({
-        title: "Clear Sky",
-        headerLeft: (
-            <TouchableHighlight
-                style={{ padding: 18 }}
-                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
-                underlayColor={hColor}
-            >
-                <Image source={require("../assets/menuIcon.png")} />
-            </TouchableHighlight>
-        ),
+
+
+
+
+export default class AppCalendar extends React.Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: "Clear Sky Chart",
     });
 
-    render() {
-        return (
-            <Container>
-                <Text>Clear Sky</Text>
-            </Container>
-        );
+    constructor(props){
+        super(props)
+        this.state= {
+             imgWidth: 0,
+             imgHeight: 0
+        }
     }
+
+    componentDidMount(){
+    Image.getSize('http://www.cleardarksky.com/c/KprnkObNYcsk.gif?c=2714406', (width, height) => {
+      // calculate image width and height 
+      const screenWidth = Dimensions.get('window').width
+      const scaleFactor = width / screenWidth
+      const imageHeight = height / scaleFactor
+      this.setState({imgWidth: screenWidth, imgHeight: imageHeight})
+    })
+    }
+    
+
+
+
+
+
+    render() {
+           return (
+                <Image source={{uri: 'http://www.cleardarksky.com/c/KprnkObNYcsk.gif?c=2714406'}} style={s.backgroundImage} />
+            );
+        
+    }
+
 }
 
-const Container = glamorous.safeAreaView({
-    flex: 1,
-    backgroundColor: bColor
-})
+const win = Dimensions.get('window');
+const s = StyleSheet.create({
+  backgroundImage: {
+    flex:1,
+    alignSelf: 'center',
+    height: 605,
+    width: 550,
+    justifyContent:'center',
+     backgroundColor: '#000000',
+     //borderColor: '#F44336',
+    //borderWidth: 1,
+     borderRadius: 1,
+    transform:[{rotate:'90deg'}],
+    resizeMode:'contain',
+    
+  }
+});
+
+
+
+
+
+
+
+
