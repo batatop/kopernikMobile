@@ -3,10 +3,9 @@ import { Image, WebView,Linking, SafeAreaView, ImageBackground, View, Text, Stat
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
 import { bColor, pColor } from "../style/colors"
-import request from 'superagent'
+
 //import Image from 'react-native-transformable-image'
-import HTML from 'react-native-render-html';
-import PhotoView from 'react-native-photo-view';
+
 
 
 
