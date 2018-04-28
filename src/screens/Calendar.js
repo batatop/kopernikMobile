@@ -7,95 +7,108 @@ import { textColor } from 'react-native-calendars/src/style';
 
 var today = new Date();
 var day = today.getDate();
-var month = today.getMonth() + 1; //January is 0!
+var month = today.getMonth()+1; //January is 0!
 var year = today.getFullYear();
 
-if (day < 10) {
-    day = '0' + day
-}
+if(day<10) {
+    day = '0'+day
+} 
 
-if (month < 10) {
-    month = '0' + month
-}
+if(month<10) {
+    month = '0'+month
+} 
 
-today = year + '-' + month + '-' + day;
+today = year+'-'+month+'-'+day; 
+postsl="https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-"+ month+ "-" + day + "T00:00:00Z&timeMax="+year+2+"-"+"01-01T00:00:00Z"
 
 export default class AppCalendar extends React.Component {
-    static navigationOptions = ({ screenProps, navigation }) => ({
+    static navigationOptions = ({ navigation }) => ({
         title: "Calendar",
-        headerLeft: (
-            <TouchableHighlight
-                style={{ padding: 18 }}
-                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
-                underlayColor={hBarColor}
-            >
-                <Image source={require("../assets/menuIcon.png")} />
-            </TouchableHighlight>
-        ),
     });
 
-    constructor(props) {
+    
+
+   constructor(props) {
         super(props)
-        this.state = {
-            isLoading: true,
-            events: [],
-            items: {}
+        this.state= {
+            isLoading:true,
+            events:[],
+            items:{}
         }
     }
 
-    componentDidMount() {
-        let postsUrl = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-" + month + "-" + day + "T00:00:00Z&timeMax=" + year + 2 + "-" + "01-01T00:00:00Z"
+
+
+    componentDidMount(){
+        let postsUrl = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-"+ month+ "-" + day + "T00:00:00Z&timeMax="+year+2+"-"+"01-01T00:00:00Z"
         fetch(postsUrl)
             .then((response) => response.json())
             .then((response) => {
-                var standartDataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+                var standartDataSource=new ListView.DataSource({rowHasChanged: (r1, r2)=>r1!== r2});
                 this.setState({
-                    isLoading: false,
-                    events: standartDataSource.cloneWithRows(response)
+                    isLoading:false,
+                    events:standartDataSource.cloneWithRows(response)
                 })
 
             })
-    }
+    } 
+
+    
+
 
     handleEvents() {
-        var confirmedEvents = 0
-        var cancelledEvents = 0
+        var confirmedEvents=0
+        var cancelledEvents=0
+        
 
-        let e = []
-        if (this.state.events != 0) {
+
+        let e=[]
+        if (this.state.events!= 0) {
             for (let i = 0; i < this.state.events._dataBlob.s1.items.length; i++) {
-                if (this.state.events._dataBlob.s1.items[i].status == "confirmed") {
-                    let newEvent = {}
-                    newEvent.title = this.state.events._dataBlob.s1.items[i].summary
-                    newEvent.location = this.state.events._dataBlob.s1.items[i].location
-                    var start = this.state.events._dataBlob.s1.items[i].start.date || this.state.events._dataBlob.s1.items[i].start.dateTime
-                    var splitData = start.split('-')
-                    var splitforDay = splitData[2].split(':')
-                    var splitYear = splitData[0]
-                    var splitMonth = splitData[1]
-                    var splitDay = splitforDay[0][0] + splitforDay[0][1]
-                    start = splitYear + '-' + splitMonth + '-' + splitDay
-                    newEvent.start = start
-                    var end = this.state.events._dataBlob.s1.items[i].end.date || this.state.events._dataBlob.s1.items[i].end.dateTime
-                    splitData = end.split('-')
-                    splitforDay = splitData[2].split(':')
-                    splitYear = splitData[0]
-                    splitMonth = splitData[1]
-                    splitDay = splitforDay[0][0] + splitforDay[0][1]
-                    end = splitYear + '-' + splitMonth + '-' + splitDay
-                    newEvent.end = end
-                    e.push(newEvent)
-                    confirmedEvents++;
-                }
-                else {
-                    cancelledEvents++;
-                }
+                    if(this.state.events._dataBlob.s1.items[i].status=="confirmed"){
+                        let newEvent = {}
+                        newEvent.title = this.state.events._dataBlob.s1.items[i].summary
+                        newEvent.location = this.state.events._dataBlob.s1.items[i].location
+                        var start=this.state.events._dataBlob.s1.items[i].start.date || this.state.events._dataBlob.s1.items[i].start.dateTime 
+                        var splitData=start.split('-')
+                        var splitforDay=splitData[2].split(':')
+                        var splitYear=splitData[0]
+                        var splitMonth=splitData[1]
+                        var splitDay=splitforDay[0][0]+splitforDay[0][1]
+                        start=splitYear+'-'+splitMonth+'-'+splitDay
+                        newEvent.start=start
+                        var exactDayd=splitData[2]
+                        var exactDay=exactDayd[3]+exactDayd[4]+exactDayd[5]+exactDayd[6]+exactDayd[7]
+                        newEvent.hour=exactDay
+                        var end=this.state.events._dataBlob.s1.items[i].end.date || this.state.events._dataBlob.s1.items[i].end.dateTime
+                        splitData=end.split('-')
+                        splitforDay=splitData[2].split(':')
+                        splitYear=splitData[0]
+                        splitMonth=splitData[1]
+                        splitDay=splitforDay[0][0]+splitforDay[0][1]
+                        end=splitYear+'-'+splitMonth+'-'+splitDay
+                        newEvent.end=end
+                        e.push(newEvent)
+                        confirmedEvents++;
+                    }
+                    else{
+                        cancelledEvents++;    
+                    }
+                                        
             }
             return e
         }
         else {
             return []
         }
+        console.log('Confirmed events are',confirmedEvents)
+        console.log('Cancelled events are',cancelledEvents)
+        // // if(this.state.events.length != 0) {
+        // //     return <Text>hdjsak</Text>
+        // //     let ret = this.state.events.map((item, i) => {
+        // //         return(<Text>{item.id}</Text>)
+        // //     })
+        // // }
     }
 
     render() {
@@ -117,11 +130,30 @@ export default class AppCalendar extends React.Component {
                 }}
             />
         )
+                //  return(
+                //         <List>
+                //             <FlatList
+                //                 data={this.handleEvents()}
+                //                 renderItem={({item})=>(
+                //                     <ListItem
+                //                         roundAvatar
+                //                         title={item.title}
+                //                         subtitle={item.location}
+                //                         avatar={{}}
+                //                     />
+
+
+                //                 )}
+                //             />
+                //         </List>                  
+
+                // )
+       
     }
 
-    loadItems(day) {
-        if (this.state.events.length != 0) {
-            data = this.handleEvents()
+      loadItems(day) {
+        if(this.state.events.length!=0){
+            data=this.handleEvents()
             setTimeout(() => {
                 for (let i = -15; i < 85; i++) {
                     const time = day.timestamp + i * 24 * 60 * 60 * 1000;
@@ -141,27 +173,29 @@ export default class AppCalendar extends React.Component {
                         }
                     }
                 }
-                
-                const newItems = {};
-                Object.keys(this.state.items).forEach(key => { newItems[key] = this.state.items[key]; });
-                this.setState({
-                    items: newItems
-                });
+              //console.log(this.state.items);
+              const newItems = {};
+              Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+              this.setState({
+                items: newItems
+              });
             }, 1000);
-        }
+
+      }
+        // console.log(`Load Items for ${day.year}-${day.month}`);
     }
 
-    renderItem(item) {
+      renderItem(item) {
         return (
-            <View style={[styles.item, { height: item.height }]}><Text>{item.name}</Text></View>
+          <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
         );
-    }
+      }
 
-    renderEmptyDate() {
+      renderEmptyDate() {
         return (
-            <View style={styles.emptyDate}><Text> </Text></View>
+          <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
         );
-    }
+      }
 
     renderDay(day, item) {
         console.log(day)
@@ -175,12 +209,15 @@ export default class AppCalendar extends React.Component {
 
     rowHasChanged(r1, r2) {
         return r1.name !== r2.name;
-    }
+      }
 
-    timeToString(time) {
+      timeToString(time) {
         const date = new Date(time);
         return date.toISOString().split('T')[0];
-    }
+      }
+
+
+    
 }
 
 function mapDays(month) {
