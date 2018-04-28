@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "486782553149",
+    "firebase_url": "https://kopernikmobile.firebaseio.com",
+    "project_id": "kopernikmobile",
+    "storage_bucket": "kopernikmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486782553149:android:f27998b2993a4761",
+        "android_client_info": {
+          "package_name": "com.kopernikmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486782553149-i46v6diob4smi2f9rb7p8p4olavcsvrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZsC5i9zGvGB8gpK55oqxM--0HG34zBsQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

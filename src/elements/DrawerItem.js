@@ -3,6 +3,7 @@ import { TouchableHighlight, Text, View} from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import glamorous from "glamorous-native"
 import { pLightColor, tLightColor, sColor, white, hBarColor } from "../style/colors"
+import { textSize } from "../style/sizes"
 
 export default class DrawerItem extends React.Component {
     navigateToScreen(route) {
@@ -52,13 +53,13 @@ const ItemContainer = glamorous.touchableHighlight({
 })
 
 const SelectedTitle = glamorous.text({
-    fontSize: 15,
+    fontSize: textSize,
     color: white,
     fontWeight: "bold"
 })
 
 const NotSelectedTitle = glamorous.text({
-    fontSize: 15,
+    fontSize: textSize,
     color: tLightColor,
     fontWeight: "bold",
     marginLeft: 10

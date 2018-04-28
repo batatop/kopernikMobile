@@ -3,6 +3,7 @@ import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar, Touchable
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import { bColor, pColor, sColor, pDarkColor, hBarColor } from "../style/colors"
+import { titleSize, subtitleSize, textSize } from "../style/sizes"
 
 export default class About extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -88,22 +89,22 @@ export default class About extends React.Component {
 
 const Container = glamorous.safeAreaView({
     flex: 1,
-    backgroundColor: bColor
+    backgroundColor: bColor,
+    margin: 10
 })
 
 const Title = glamorous.text({
-    fontSize: 30,
-    padding: 5
+    fontSize: titleSize,
 })
 
 const Content = glamorous.text({
-    
+    fontSize: textSize,
 })
 
 const Subtitle = glamorous.text({
-
+    fontSize: subtitleSize,
 })
 
 const ListItem = glamorous.text({
-
+    fontSize: textSize,
 })

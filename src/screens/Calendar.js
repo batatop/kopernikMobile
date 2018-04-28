@@ -3,6 +3,7 @@ import { SafeAreaView, ActivityIndicator, View, ListView, Text, StatusBar, Image
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
 import { pColor, pLightColor, sColor, hBarColor } from "../style/colors"
+import { textColor } from 'react-native-calendars/src/style';
 
 var today = new Date();
 var day = today.getDate();
@@ -105,6 +106,7 @@ export default class AppCalendar extends React.Component {
                 selected={today}
                 renderItem={this.renderItem.bind(this)}
                 renderEmptyDate={this.renderEmptyDate.bind(this)}
+                renderDay={this.renderDay.bind(this)}
                 rowHasChanged={this.rowHasChanged.bind(this)}
                 theme={{
                     selectedDayBackgroundColor: pColor,
@@ -131,7 +133,6 @@ export default class AppCalendar extends React.Component {
                             if (data[j].start == strTime) {
                                 this.state.items[strTime].push({
                                     name: data[j].title + strTime,
-                                    height: Math.max(50, Math.floor(Math.random() * 150))
                                 });
                             }
                             else {
@@ -162,6 +163,16 @@ export default class AppCalendar extends React.Component {
         );
     }
 
+    renderDay(day, item) {
+        console.log(day)
+        return (
+            <View style={styles.day}>
+                <Text>{day.day}</Text>
+                <Text>{mapDays(day.month)}</Text>
+            </View>
+        );
+    }
+
     rowHasChanged(r1, r2) {
         return r1.name !== r2.name;
     }
@@ -169,6 +180,45 @@ export default class AppCalendar extends React.Component {
     timeToString(time) {
         const date = new Date(time);
         return date.toISOString().split('T')[0];
+    }
+}
+
+function mapDays(month) {
+    if(month == 1) {
+        return "Jan"
+    }
+    else if (month == 2) {
+        return "Feb"
+    }
+    else if (month == 3) {
+        return "Mar"
+    }
+    else if (month == 4) {
+        return "Apr"
+    }
+    else if (month == 5) {
+        return "May"
+    }
+    else if (month == 6) {
+        return "Jun"
+    }
+    else if (month == 7) {
+        return "Jul"
+    }
+    else if (month == 8) {
+        return "Aug"
+    }
+    else if (month == 9) {
+        return "Sep"
+    }
+    else if (month == 10) {
+        return "Oct"
+    }
+    else if (month == 11) {
+        return "Nov"
+    }
+    else if (month == 12) {
+        return "Dec"
     }
 }
 
@@ -185,5 +235,11 @@ const styles = StyleSheet.create({
         height: 15,
         flex: 1,
         paddingTop: 30
+    },
+    day: {
+        flex: 0.1,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 17
     }
 });

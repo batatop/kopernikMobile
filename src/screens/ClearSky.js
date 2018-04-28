@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, SafeAreaView, TouchableHighlight } from 'react-native';
+import { Image, SafeAreaView, TouchableHighlight, Dimensions } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
 import { bColor, pColor, black, hBarColor } from "../style/colors"
@@ -19,11 +19,11 @@ export default class AppCalendar extends React.Component {
     });
 
     render() {
-           return (
-                <Container>
-                    <ClearSkyImg source={{uri: 'http://www.cleardarksky.com/c/KprnkObNYcsk.gif?c=2714406'}} />
-                </Container>
-            );
+        return (
+            <Container>
+                <ClearSkyImg source={{uri: 'http://www.cleardarksky.com/c/KprnkObNYcsk.gif?c=2714406'}} />
+            </Container>
+        );
     }
 }
 
@@ -34,12 +34,20 @@ const Container = glamorous.safeAreaView({
 
 const ClearSkyImg = glamorous.image({
     flex: 1,
-    alignSelf: 'center',
-    height: 605,
-    width: 550,
-    justifyContent: 'center',
-    backgroundColor: '#000000',
-    borderRadius: 1,
-    transform: [{ rotate: '90deg' }],
+    height: 500, // a big number
+    margin: 10,
     resizeMode: 'contain',
 })
+
+// // Rotated
+// const ClearSkyImg = glamorous.image({
+//     flex: 1,
+//     alignSelf: 'center',
+//     height: 605,
+//     width: 550,
+//     justifyContent: 'center',
+//     backgroundColor: '#000000',
+//     borderRadius: 1,
+//     transform: [{ rotate: '90deg' }],
+//     resizeMode: 'contain',
+// })

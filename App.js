@@ -8,7 +8,8 @@ import Drawer from "./src/elements/Drawer"
 import About from "./src/screens/About"
 import Calendar from "./src/screens/Calendar"
 import ClearSky from "./src/screens/ClearSky"
-import ContactUs from "./src/screens/ContactUs"
+import ContactUsGeneral from "./src/screens/ContactUsGeneral"
+import ContactUsStaff from "./src/screens/ContactUsStaff"
 import DirectionsRegular from "./src/screens/DirectionsRegular"
 import DirectionsSnow from "./src/screens/DirectionsSnow"
 import Gallery from "./src/screens/Gallery"
@@ -90,9 +91,41 @@ const AboutNavigator = StackNavigator(
     }
 )
 
+const ContactUsTabNavigator = TabNavigator(
+    {
+        GeneralContactUs: {
+            screen: ContactUsGeneral,
+            navigationOptions: {
+                tabBarLabel: "General",
+            }
+        },
+        StaffContactUs: {
+            screen: ContactUsStaff,
+            navigationOptions: {
+                tabBarLabel: "Staff",
+            }
+        },
+    },
+    {
+        tabBarOptions: {
+            style: {
+                backgroundColor: pColor,
+            },
+            labelStyle: {
+                color: tLightColor,
+                fontWeight: "bold",
+                width: Dimensions.get('window').width,
+            },
+            indicatorStyle: {
+                backgroundColor: sColor
+            }
+        }
+    }
+)
+
 const ContactUsNavigator = StackNavigator(
     {
-        ContactUs: { screen: ContactUs },
+        ContactUsTab: { screen: ContactUsTabNavigator },
     },
     {
         navigationOptions: {

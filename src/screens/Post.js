@@ -3,6 +3,7 @@ import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar } from 're
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import { bColor, pColor, sColor, pDarkColor } from "../style/colors"
+import { titleSize, textSize } from "../style/sizes"
 
 import PostItem from "../elements/PostItem"
 
@@ -23,7 +24,7 @@ export default class Post extends React.Component {
                         value={`<div>${this.props.navigation.state.params.post.title}</div>`}
                         stylesheet={{ 
                             div: {
-                                fontSize: 30,
+                                fontSize: titleSize,
                                 padding: 5
                             },
                             a: {
@@ -36,7 +37,7 @@ export default class Post extends React.Component {
                         value={`<div>${this.props.navigation.state.params.post.content}</div>`}
                         stylesheet={{
                             div: {
-                                fontSize: 15,
+                                fontSize: textSize,
                                 padding: 5 
                             },
                             a: {
