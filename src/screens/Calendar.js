@@ -103,12 +103,6 @@ export default class AppCalendar extends React.Component {
         }
         console.log('Confirmed events are',confirmedEvents)
         console.log('Cancelled events are',cancelledEvents)
-        // // if(this.state.events.length != 0) {
-        // //     return <Text>hdjsak</Text>
-        // //     let ret = this.state.events.map((item, i) => {
-        // //         return(<Text>{item.id}</Text>)
-        // //     })
-        // // }
     }
 
     render() {
@@ -130,25 +124,6 @@ export default class AppCalendar extends React.Component {
                 }}
             />
         )
-                //  return(
-                //         <List>
-                //             <FlatList
-                //                 data={this.handleEvents()}
-                //                 renderItem={({item})=>(
-                //                     <ListItem
-                //                         roundAvatar
-                //                         title={item.title}
-                //                         subtitle={item.location}
-                //                         avatar={{}}
-                //                     />
-
-
-                //                 )}
-                //             />
-                //         </List>                  
-
-                // )
-       
     }
 
       loadItems(day) {
@@ -164,7 +139,7 @@ export default class AppCalendar extends React.Component {
                         for (let j = 0; j < numItems; j++) {
                             if (data[j].start == strTime) {
                                 this.state.items[strTime].push({
-                                    name: data[j].title + strTime,
+                                    name: data[j].hour + " - " + data[j].title,
                                 });
                             }
                             else {
@@ -173,7 +148,7 @@ export default class AppCalendar extends React.Component {
                         }
                     }
                 }
-              //console.log(this.state.items);
+              
               const newItems = {};
               Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
               this.setState({
@@ -182,7 +157,7 @@ export default class AppCalendar extends React.Component {
             }, 1000);
 
       }
-        // console.log(`Load Items for ${day.year}-${day.month}`);
+       
     }
 
       renderItem(item) {
@@ -193,7 +168,7 @@ export default class AppCalendar extends React.Component {
 
       renderEmptyDate() {
         return (
-          <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+          <View style={styles.emptyDate}><Text> </Text></View>
         );
       }
 
