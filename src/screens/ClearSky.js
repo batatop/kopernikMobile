@@ -13,7 +13,7 @@ export default class AppCalendar extends React.Component {
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
-                <Image source={require("../assets/menuIcon.png")} />
+                <Image source={require("../style/assets/menuIcon.png")} />
             </TouchableHighlight>
         ),
     });

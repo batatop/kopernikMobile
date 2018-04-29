@@ -4,6 +4,7 @@ import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation'
 import { pColor, pLightColor, sColor, tLightColor, white } from "./src/style/colors"
 
 import Drawer from "./src/elements/Drawer"
+import GalleryDrawer from "./src/elements/GalleryDrawer"
 
 import About from "./src/screens/About"
 import Calendar from "./src/screens/Calendar"
@@ -14,7 +15,6 @@ import DirectionsRegular from "./src/screens/DirectionsRegular"
 import DirectionsSnow from "./src/screens/DirectionsSnow"
 import Gallery from "./src/screens/Gallery"
 import Home from "./src/screens/Home"
-import GalleryImage from "./src/screens/GalleryImage"
 import Post from "./src/screens/Post"
 
 const HomeNavigator = StackNavigator(
@@ -54,10 +54,9 @@ const CalendarNavigator = StackNavigator(
     }
 )
 
-const GalleryNavigator = StackNavigator(
+const GalleryStackNavigator = StackNavigator(
     {
-        Gallery: { screen: Gallery },
-        GalleryImage: { screen: GalleryImage },
+        GalleryStack: { screen: Gallery },
     },
     {
         navigationOptions: {
@@ -70,6 +69,27 @@ const GalleryNavigator = StackNavigator(
             },
             headerTintColor: white
         }
+    }
+)
+
+const GalleryNavigator = DrawerNavigator(
+    {
+        Gallery: {
+            screen: ({ navigation, screenProps }) =>
+                <GalleryStackNavigator
+                    screenProps={{
+                        galleryNavigation: navigation,
+                        rootNavigation: screenProps.rootNavigation,
+                        defaultGroup: "aurora"
+                    }}
+                />
+        }
+        // Gallery: { screen: GalleryStackNavigator }
+    },
+    {
+        contentComponent: GalleryDrawer,
+        drawerWidth: 300,
+        drawerPosition: "right"
     }
 )
 
@@ -217,7 +237,7 @@ const MainNavigator = TabNavigator(
                 tabBarLabel: "Home",
                 tabBarIcon: ({ tintColor }) => (
                     <Image
-                        source={require('./src/assets/homeIcon.png')}
+                        source={require('./src/style/assets/homeIcon.png')}
                     />
                 ),
             }
@@ -228,7 +248,7 @@ const MainNavigator = TabNavigator(
                 tabBarLabel: "Calendar",
                 tabBarIcon: ({ tintColor }) => (
                     <Image
-                        source={require('./src/assets/calendarIcon.png')}
+                        source={require('./src/style/assets/calendarIcon.png')}
                     />
                 ),
             }
@@ -239,7 +259,7 @@ const MainNavigator = TabNavigator(
                 tabBarLabel: "Gallery",
                 tabBarIcon: ({ tintColor }) => (
                     <Image
-                        source={require('./src/assets/galleryIcon.png')}
+                        source={require('./src/style/assets/galleryIcon.png')}
                     />
                 ),
             }
@@ -250,7 +270,7 @@ const MainNavigator = TabNavigator(
                 tabBarLabel: "Clear Sky",
                 tabBarIcon: ({ tintColor }) => (
                     <Image
-                        source={require('./src/assets/clearSkyIcon.png')}
+                        source={require('./src/style/assets/clearSkyIcon.png')}
                     />
                 ),
             }
@@ -332,7 +352,7 @@ const RootNavigator = DrawerNavigator(
 )
 
 class App extends React.Component {
-    render() {
+    render() {    
         return (
             <RootNavigator />
         )

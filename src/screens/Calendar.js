@@ -101,8 +101,6 @@ export default class AppCalendar extends React.Component {
         else {
             return []
         }
-        console.log('Confirmed events are',confirmedEvents)
-        console.log('Cancelled events are',cancelledEvents)
     }
 
     render() {
@@ -142,9 +140,6 @@ export default class AppCalendar extends React.Component {
                                     name: data[j].hour + " - " + data[j].title,
                                 });
                             }
-                            else {
-                                // console.log('zaman', strTime)
-                            }
                         }
                     }
                 }
@@ -173,7 +168,6 @@ export default class AppCalendar extends React.Component {
       }
 
     renderDay(day, item) {
-        console.log(day)
         return (
             <View style={styles.day}>
                 <Text>{day.day}</Text>
