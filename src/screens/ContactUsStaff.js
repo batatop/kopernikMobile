@@ -2,14 +2,14 @@ import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
-import { titleSize, subtitleSize, textSize } from "../style/sizes"
+import { titleSize, subtitleSize, textSize, generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class ContactUsStaff extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Contact Us",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -56,7 +56,10 @@ export default class ContactUsStaff extends React.Component {
 const Container = glamorous.safeAreaView({
     flex: 1,
     backgroundColor: bColor,
-    padding: 5
+    paddingLeft: screenPaddingHorSize,
+    paddingRight: screenPaddingHorSize,
+    paddingTop: screenPaddingVerSize,
+    paddingBottom: screenPaddingVerSize,
 })
 
 const Subtitle = glamorous.text({

@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView,Dimension,Button,Alert, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import ZoomImage from 'react-native-zoom-image';
 import {Easing} from 'react-native'; // import Easing if you want to customize easing function
+import { generalPaddingSize, galleryImgHeight, galleryFocusedImgHeight } from "../style/sizes"
 
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hColor, hBarColor } from "../style/colors"
@@ -11,7 +12,7 @@ export default class Gallery extends React.Component {
         title: "Gallery",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -20,7 +21,7 @@ export default class Gallery extends React.Component {
         ),
         headerRight: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.galleryNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -123,12 +124,11 @@ export default class Gallery extends React.Component {
                         key={"zoom_"+"."+i}
                         style={{
                             flex: 1,
-                            height: 150,
+                            height: galleryFocusedImgHeight,
                             margin:1
                         }}
                         source={{uri: imgUrl}}
-                        imgStyle={{flex: 1,
-                    height: 150}}
+                        imgStyle={{flex: 1, height: galleryFocusedImgHeight}}
                         duration={200}
                         enableScaling={true}
                         easingFunc={Easing.ease}
@@ -148,7 +148,6 @@ export default class Gallery extends React.Component {
                     barStyle="light-content"
                 />
                 <Column>
-                   
                     {this.listImages()}
                 </Column>
             </Container>
@@ -180,5 +179,5 @@ const ImageContainer = glamorous.touchableHighlight({
 
 const ListImage = glamorous.image({
     flex: 1,
-    height: 120,
+    height: galleryImgHeight,
 })

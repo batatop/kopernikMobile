@@ -2,8 +2,9 @@ import React from 'react';
 import { SafeAreaView, ActivityIndicator, View, ListView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
-import { pColor, pLightColor, sColor, hBarColor } from "../style/colors"
+import { pColor, pLightColor, sColor, hBarColor, white, bColor } from "../style/colors"
 import { textColor } from 'react-native-calendars/src/style';
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 var today = new Date();
 var day = today.getDate();
@@ -22,8 +23,17 @@ today = year+'-'+month+'-'+day;
 postsl="https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-"+ month+ "-" + day + "T00:00:00Z&timeMax="+year+2+"-"+"01-01T00:00:00Z"
 
 export default class AppCalendar extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({ navigation, screenProps }) => ({
         title: "Calendar",
+        headerLeft: (
+            <TouchableHighlight
+                style={{ padding: generalPaddingSize }}
+                onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
+                underlayColor={hBarColor}
+            >
+                <Image source={require("../style/assets/menuIcon.png")} />
+            </TouchableHighlight>
+        ),
     });
 
     
@@ -53,14 +63,9 @@ export default class AppCalendar extends React.Component {
             })
     } 
 
-    
-
-
     handleEvents() {
         var confirmedEvents=0
         var cancelledEvents=0
-        
-
 
         let e=[]
         if (this.state.events!= 0) {
@@ -114,6 +119,8 @@ export default class AppCalendar extends React.Component {
                 renderDay={this.renderDay.bind(this)}
                 rowHasChanged={this.rowHasChanged.bind(this)}
                 theme={{
+                    backgroundColor: bColor,
+                    calendarBackground: white,
                     selectedDayBackgroundColor: pColor,
                     todayTextColor: sColor,
                     agendaKnobColor: pColor,
@@ -184,9 +191,6 @@ export default class AppCalendar extends React.Component {
         const date = new Date(time);
         return date.toISOString().split('T')[0];
       }
-
-
-    
 }
 
 function mapDays(month) {
@@ -230,21 +234,27 @@ function mapDays(month) {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: 'white',
         flex: 1,
+        backgroundColor: white,
         borderRadius: 5,
-        padding: 10,
+        paddingLeft: screenPaddingHorSize,
+        paddingRight: screenPaddingHorSize,
+        paddingTop: screenPaddingVerSize,
+        paddingBottom: screenPaddingVerSize,
         marginRight: 10,
         marginTop: 17
     },
     emptyDate: {
-        height: 15,
         flex: 1,
+        height: 15,
         paddingTop: 30
     },
     day: {
         flex: 0.1,
-        padding: 10,
+        paddingLeft: screenPaddingHorSize,
+        paddingRight: screenPaddingHorSize,
+        paddingTop: screenPaddingVerSize,
+        paddingBottom: screenPaddingVerSize,
         marginRight: 10,
         marginTop: 17
     }

@@ -2,13 +2,14 @@ import React from 'react';
 import { SafeAreaView,Button,Alert, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hColor, hBarColor } from "../style/colors"
+import { generalPaddingSize } from "../style/sizes"
 
 export default class Calendar extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Gallery",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >

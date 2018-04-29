@@ -3,13 +3,14 @@ import { Image, SafeAreaView, TouchableHighlight, Dimensions } from 'react-nativ
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
 import { bColor, pColor, black, hBarColor } from "../style/colors"
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class AppCalendar extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Clear Sky Chart",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -29,13 +30,16 @@ export default class AppCalendar extends React.Component {
 
 const Container = glamorous.safeAreaView({
     flex: 1,
-    backgroundColor: black
+    backgroundColor: black,
+    paddingLeft: screenPaddingHorSize,
+    paddingRight: screenPaddingHorSize,
+    paddingTop: screenPaddingVerSize,
+    paddingBottom: screenPaddingVerSize,
 })
 
 const ClearSkyImg = glamorous.image({
     flex: 1,
     height: 500, // a big number
-    margin: 10,
     resizeMode: 'contain',
 })
 

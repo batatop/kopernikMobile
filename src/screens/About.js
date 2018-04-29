@@ -3,14 +3,14 @@ import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar, Touchable
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import { bColor, pColor, sColor, pDarkColor, hBarColor } from "../style/colors"
-import { titleSize, subtitleSize, textSize } from "../style/sizes"
+import { titleSize, subtitleSize, textSize, generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class About extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "About",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -64,22 +64,22 @@ export default class About extends React.Component {
                         Facilities{"\n"}
                     </Subtitle>
                     <ListItem>
-                        - 3 Observatory Telescopes{"\n"}
-                        - Solar Heliostat{"\n"}
-                        - Over 12 Portable Telescopes{"\n"}
-                        - Heliostat Solar Telescope{"\n"}
-                        - High Resolution CCD camera and filter set{"\n"}
-                        - Hershel Wedge & other solar filters{"\n"}
-                        - Photovoltaic Array{"\n"}
-                        - True Color 3D projector{"\n"}
-                        - Computer Lab{"\n"}
-                        - Space Science Lab{"\n"}
-                        - Physics/Laser Lab{"\n"}
-                        - Earth Science Lab{"\n"}
-                        - Weather Station{"\n"}
-                        - Amateur Radio Station (K2ZRO){"\n"}
-                        - 24 Acres{"\n"}
-                        - Portable Planetarium{"\n"}
+                        &#9679; 3 Observatory Telescopes{"\n"}
+                        &#9679; Solar Heliostat{"\n"}
+                        &#9679; Over 12 Portable Telescopes{"\n"}
+                        &#9679; Heliostat Solar Telescope{"\n"}
+                        &#9679; High Resolution CCD camera and filter set{"\n"}
+                        &#9679; Hershel Wedge & other solar filters{"\n"}
+                        &#9679; Photovoltaic Array{"\n"}
+                        &#9679; True Color 3D projector{"\n"}
+                        &#9679; Computer Lab{"\n"}
+                        &#9679; Space Science Lab{"\n"}
+                        &#9679; Physics/Laser Lab{"\n"}
+                        &#9679; Earth Science Lab{"\n"}
+                        &#9679; Weather Station{"\n"}
+                        &#9679; Amateur Radio Station (K2ZRO){"\n"}
+                        &#9679; 24 Acres{"\n"}
+                        &#9679; Portable Planetarium{"\n"}
                     </ListItem>
                 </ScrollView>
             </Container>
@@ -90,7 +90,10 @@ export default class About extends React.Component {
 const Container = glamorous.safeAreaView({
     flex: 1,
     backgroundColor: bColor,
-    margin: 10
+    paddingLeft: screenPaddingHorSize,
+    paddingRight: screenPaddingHorSize,
+    paddingTop: screenPaddingVerSize,
+    paddingBottom: screenPaddingVerSize,
 })
 
 const Title = glamorous.text({

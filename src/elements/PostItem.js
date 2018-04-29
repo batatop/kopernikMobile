@@ -3,6 +3,7 @@ import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import { bLightColor, tDarkColor, black, grey, tBlack,sColor, hColor } from "../style/colors"
+import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, postItemImgHeight, textSize, postItemImgMarginSize } from "../style/sizes"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -29,7 +30,7 @@ export default class PostItem extends React.Component {
                             value={`<div>${this.props.post.title}</div>`}
                             stylesheet={{
                                 div: {
-                                    fontSize: 15
+                                    fontSize: textSize
                                 },
                                 a: {
                                     color: sColor,
@@ -46,8 +47,11 @@ export default class PostItem extends React.Component {
 const ItemHighlight = glamorous.touchableHighlight({
     flexDirection: "row",
     flex: 1,
-    height: 100,
-    margin: 5,
+    height: postHeight,
+    marginLeft: screenPaddingHorSize,
+    marginRight: screenPaddingHorSize,
+    marginTop: screenPaddingVerSize,
+    marginBottom: screenPaddingVerSize,
     shadowOffset: { width: 20, height: 20 },
     shadowColor: black,
     shadowOpacity: 1,
@@ -70,9 +74,9 @@ const ItemContentSide = glamorous.view({
 })
 
 const ItemImage = glamorous.image({
-    margin: 10,
-    height: 80,
-    width: 80,
+    margin: postItemImgMarginSize,
+    height: postItemImgHeight,
+    width: postItemImgHeight,
     borderWidth: 1,
     borderColor: grey,
     resizeMode: 'contain',

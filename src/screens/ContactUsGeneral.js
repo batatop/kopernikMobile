@@ -2,14 +2,14 @@ import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
-import { titleSize, subtitleSize, textSize } from "../style/sizes"
+import { titleSize, subtitleSize, textSize, generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class ContactUsGeneral extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Contact Us",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -23,25 +23,25 @@ export default class ContactUsGeneral extends React.Component {
             <Container>
                 <Subtitle>Address</Subtitle>
                 <Content>
-                    698 Underwood Road, Vestal NY 13850{"\n"}
+                    698 Underwood Road, Vestal NY 13850{"\n"}{"\n"}
                 </Content>
                 <Subtitle>Phone</Subtitle>
                 <Content>
-                    607-748-3685{"\n"}
+                    607-748-3685{"\n"}{"\n"}
                 </Content>
                 <Subtitle>Fax</Subtitle>
                 <Content>
-                    607-748-3222{"\n"}
+                    607-748-3222{"\n"}{"\n"}
                 </Content>
                 <Subtitle>E-mail</Subtitle>
                 <Content>
-                    info@kopernik.org{"\n"}
+                    info@kopernik.org{"\n"}{"\n"}
                 </Content>
                 <Subtitle>Kopernik Astronomical Society [KAS]</Subtitle>
                 <Content>
                     George Normandin, President{"\n"}
                     Optics, Astrophotography and CCD Imaging Expert{"\n"}
-                    gnormandin@stny.rr.com{"\n"}
+                    gnormandin@stny.rr.com{"\n"}{"\n"}
                 </Content>
             </Container>
         );
@@ -51,7 +51,10 @@ export default class ContactUsGeneral extends React.Component {
 const Container = glamorous.safeAreaView({
     flex: 1,
     backgroundColor: bColor,
-    padding: 5
+    paddingLeft: screenPaddingHorSize,
+    paddingRight: screenPaddingHorSize,
+    paddingTop: screenPaddingVerSize,
+    paddingBottom: screenPaddingVerSize,
 })
 
 const Subtitle = glamorous.text({

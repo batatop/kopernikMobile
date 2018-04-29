@@ -2,13 +2,14 @@ import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class DirectionsRegular extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
         title: "Directions",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -28,5 +29,9 @@ export default class DirectionsRegular extends React.Component {
 
 const Container = glamorous.safeAreaView({
     flex: 1,
-    backgroundColor: bColor
+    backgroundColor: bColor,
+    paddingLeft: screenPaddingHorSize,
+    paddingRight: screenPaddingHorSize,
+    paddingTop: screenPaddingVerSize,
+    paddingBottom: screenPaddingVerSize,
 })

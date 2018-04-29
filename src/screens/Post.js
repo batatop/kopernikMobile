@@ -3,7 +3,7 @@ import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar } from 're
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import { bColor, pColor, sColor, pDarkColor } from "../style/colors"
-import { titleSize, textSize } from "../style/sizes"
+import { titleSize, textSize, postImgHeight } from "../style/sizes"
 
 import PostItem from "../elements/PostItem"
 
@@ -58,6 +58,6 @@ const Container = glamorous.safeAreaView({
 
 const PostImage = glamorous.image({
     flex: 1,
-    height: 200,
+    height: postImgHeight,
     resizeMode: 'contain',
 })

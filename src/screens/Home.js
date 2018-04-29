@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, FlatList, StatusBar, ScrollView, Text, TouchableHighlight, Image } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
+import { generalPaddingSize, mainImgHeight } from "../style/sizes"
 
 import PostItem from "../elements/PostItem"
 
@@ -10,7 +11,7 @@ export default class Home extends React.Component {
         title: "Kopernik",
         headerLeft: (
             <TouchableHighlight
-                style={{ padding: 18 }}
+                style={{ padding: generalPaddingSize }}
                 onPress={() => screenProps.rootNavigation.navigate("DrawerToggle")}
                 underlayColor={hBarColor}
             >
@@ -89,8 +90,8 @@ const ScrollContainer = glamorous.scrollView({
 
 const MainImage = glamorous.image({
     flex: 1,
-    height: 120,
-    maxHeight: 120,
+    height: mainImgHeight,
+    maxHeight: mainImgHeight,
     maxWidth: "100%",
     overflow: "hidden"
 })
