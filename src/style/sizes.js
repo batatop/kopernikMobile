@@ -16,6 +16,7 @@ export const postImgHeight = 200
 export const postItemImgHeight = 80
 export const galleryImgHeight = 120
 export const galleryFocusedImgHeight = 150
+export const mapHeight = 350
 
 // Widths
 export const drawerBulletWidth = 10
