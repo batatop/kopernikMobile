@@ -52,9 +52,9 @@ const ItemHighlight = glamorous.touchableHighlight({
     marginRight: screenPaddingHorSize,
     marginTop: screenPaddingVerSize,
     marginBottom: screenPaddingVerSize,
-    shadowOffset: { width: 20, height: 20 },
+    shadowOffset: { width: 5, height: 5 },
     shadowColor: black,
-    shadowOpacity: 1,
+    shadowOpacity: 0.2,
     elevation: 5,
     backgroundColor: bLightColor
 })

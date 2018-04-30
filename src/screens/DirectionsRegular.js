@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableHighlight, Image } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps'
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
-import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize } from "../style/sizes"
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize, mapHeight } from "../style/sizes"
 
 export default class DirectionsRegular extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -30,6 +31,26 @@ export default class DirectionsRegular extends React.Component {
                     Observatory will be visible soon on the left.
                     {"\n"}
                 </Content>
+                <MapView style={styles.map}
+                    initialRegion={{
+                        latitude: 42.002061,
+                        longitude: -76.032772,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                    }}>
+                    <Marker
+                        coordinate={{
+                            latitude: 42.002061,
+                            longitude: -76.032772,
+                        }}
+                        title={"Kopernik Observatory & Science Center"}
+                        description={"Look Up... and Dream Big!"}
+                >
+                        <View style={styles.radius}>
+                            <View style={styles.marker} />
+                        </View>
+                    </Marker>
+                </MapView>
             </Container>
         );
     }
@@ -47,3 +68,13 @@ const Container = glamorous.safeAreaView({
 const Content = glamorous.text({
     fontSize: textSize
 })
+
+const styles = StyleSheet.create({
+    map: {
+        height: mapHeight
+    },
+    marker: {
+        height: 20,
+        width: 20,
+    }
+});
