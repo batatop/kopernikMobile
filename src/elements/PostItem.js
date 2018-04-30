@@ -2,14 +2,14 @@ import React from 'react';
 import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { bLightColor, tDarkColor, black, grey, tBlack,sColor, hColor } from "../style/colors"
+import { bLightColor, tDarkColor, black, grey, tBlack, sColor, hColor } from "../style/colors"
 import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, postItemImgHeight, textSize, postItemImgMarginSize } from "../style/sizes"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
         this.getTitle = this.getTitle.bind(this)
     }
-    
+
     getTitle() {
         let title = "<p style='text-align: center;'" + this.props.title + "</p>"
         return this.props.title
@@ -19,7 +19,7 @@ export default class PostItem extends React.Component {
         return (
             <ItemHighlight
                 onPress={() => this.props.navigation.navigate("Post", { post: this.props.post })}
-                underlayColor= {hColor}
+                underlayColor={hColor}
             >
                 <ItemView>
                     <ItemIconSide>
