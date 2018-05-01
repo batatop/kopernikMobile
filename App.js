@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Dimensions } from 'react-native';
+import { Image, Dimensions, Platform } from 'react-native';
 import { TabNavigator, StackNavigator, DrawerNavigator } from 'react-navigation';
 import { pColor, pLightColor, sColor, tLightColor, white } from "./src/style/colors"
 
@@ -111,37 +111,93 @@ const AboutNavigator = StackNavigator(
     }
 )
 
-const ContactUsTabNavigator = TabNavigator(
-    {
-        GeneralContactUs: {
-            screen: ContactUsGeneral,
-            navigationOptions: {
-                tabBarLabel: "General",
-            }
-        },
-        StaffContactUs: {
-            screen: ContactUsStaff,
-            navigationOptions: {
-                tabBarLabel: "Staff",
-            }
-        },
-    },
-    {
-        tabBarOptions: {
-            style: {
-                backgroundColor: pColor,
+let ContactUsTabNavigator = null;
+if(Platform.OS === 'ios') {
+    ContactUsTabNavigator = TabNavigator(
+        {
+            GeneralContactUs: {
+                screen: ContactUsGeneral,
+                navigationOptions: {
+                    tabBarLabel: "General",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/contactGeneralIcon.png')}
+                        />
+                    ),
+                }
             },
-            labelStyle: {
-                color: tLightColor,
-                fontWeight: "bold",
-                width: Dimensions.get('window').width,
+            StaffContactUs: {
+                screen: ContactUsStaff,
+                navigationOptions: {
+                    tabBarLabel: "Staff",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/contactStaffIcon.png')}
+                        />
+                    ),
+                }
             },
-            indicatorStyle: {
-                backgroundColor: sColor
-            }
+        },
+        {
+            tabBarOptions: {
+                style: {
+                    backgroundColor: pColor,
+                },
+                labelStyle: {
+                    color: tLightColor,
+                    fontWeight: "bold",
+                    width: Dimensions.get('window').width,
+                },
+                indicatorStyle: {
+                    backgroundColor: sColor
+                }
+            }        
         }
-    }
-)
+    )
+}
+else {
+    ContactUsTabNavigator = TabNavigator(
+        {
+            GeneralContactUs: {
+                screen: ContactUsGeneral,
+                navigationOptions: {
+                    tabBarLabel: "General",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/directionsGeneralIcon.png')}
+                        />
+                    ),
+                }
+            },
+            StaffContactUs: {
+                screen: ContactUsStaff,
+                navigationOptions: {
+                    tabBarLabel: "Staff",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/directionsSnowIcon.png')}
+                        />
+                    ),
+                }
+            },
+        },
+        {
+            tabBarOptions: {
+                style: {
+                    backgroundColor: pColor,
+                },
+                labelStyle: {
+                    color: tLightColor,
+                    fontWeight: "bold",
+                    width: Dimensions.get('window').width,
+                },
+                indicatorStyle: {
+                    backgroundColor: sColor
+                }
+            }        
+        }
+    )
+}
 
 const ContactUsNavigator = StackNavigator(
     {

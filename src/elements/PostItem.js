@@ -2,8 +2,9 @@ import React from 'react';
 import { TouchableHighlight, View, Text, Image, WebView } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
+import FlexImage from 'react-native-flex-image';
 import { bLightColor, tDarkColor, black, grey, tBlack, sColor, hColor } from "../style/colors"
-import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, postItemImgHeight, textSize, postItemImgMarginSize } from "../style/sizes"
+import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, postItemImgHeight, textSize, postItemImgMarginSize, postItemContentPaddingSize } from "../style/sizes"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -23,17 +24,25 @@ export default class PostItem extends React.Component {
             >
                 <ItemView>
                     <ItemIconSide>
-                        <ItemImage source={{ uri: this.props.post.img }} />
+                        <FlexImage
+                            source={{
+                                uri: this.props.post.img
+                            }}
+
+                            style={{
+                                marginLeft: postItemImgMarginSize,
+                            }}
+                        />
                     </ItemIconSide>
                     <ItemContentSide>
                         <HTMLView
                             value={`<div>${this.props.post.title}</div>`}
                             stylesheet={{
                                 div: {
-                                    fontSize: textSize
+                                    fontSize: textSize,                     
                                 },
                                 a: {
-                                    color: sColor,
+                                    color: sColor                          
                                 }
                             }}
                         />
@@ -47,7 +56,6 @@ export default class PostItem extends React.Component {
 const ItemHighlight = glamorous.touchableHighlight({
     flexDirection: "row",
     flex: 1,
-    height: postHeight,
     marginLeft: screenPaddingHorSize,
     marginRight: screenPaddingHorSize,
     marginTop: screenPaddingVerSize,
@@ -65,19 +73,12 @@ const ItemView = glamorous.view({
 })
 
 const ItemIconSide = glamorous.view({
-    flex: 0.25
+    flex: 0.25,
+    justifyContent: "center",    
 })
 
 const ItemContentSide = glamorous.view({
     flex: 0.75,
+    padding: postItemImgMarginSize,
     justifyContent: "center",
-})
-
-const ItemImage = glamorous.image({
-    margin: postItemImgMarginSize,
-    height: postItemImgHeight,
-    width: postItemImgHeight,
-    borderWidth: 1,
-    borderColor: grey,
-    resizeMode: 'contain',
 })

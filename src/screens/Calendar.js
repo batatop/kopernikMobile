@@ -250,12 +250,12 @@ const styles = StyleSheet.create({
         paddingTop: 30
     },
     day: {
-        flex: 0.1,
+        flex: 0.11,
         paddingLeft: screenPaddingHorSize,
         paddingRight: screenPaddingHorSize,
         paddingTop: screenPaddingVerSize,
         paddingBottom: screenPaddingVerSize,
-        marginRight: 10,
-        marginTop: 17
+        marginTop: 17,
+        justifyContent: 'center',
     }
 });

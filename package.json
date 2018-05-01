@@ -13,6 +13,7 @@
     "react-native": "^0.53.0",
     "react-native-calendars": "^1.17.4",
     "react-native-firebase": "^4.0.4",
+    "react-native-flex-image": "^1.2.0",
     "react-native-htmlview": "^0.12.1",
     "react-native-maps": "^0.21.0",
     "react-native-zoom-image": "^0.1.2",
