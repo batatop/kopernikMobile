@@ -56,10 +56,12 @@ export default class Gallery extends React.Component {
                             new_url.push(url + href[i].substring(6, href[i].length - 1))
                         }
                     }
-                    this.setState({
-                        name: name,
-                        images: new_url
-                    })
+                    if(this.refs.gallery) {                    
+                        this.setState({
+                            name: name,
+                            images: new_url
+                        })
+                    }
                 });
         }
     }
@@ -79,10 +81,12 @@ export default class Gallery extends React.Component {
                     new_url.push(url + href[i].substring(6, href[i].length - 1))
                 }
             }
-            this.setState({
-                name:name,
-                images:new_url
-            })
+            if(this.refs.gallery) {
+                this.setState({
+                    name:name,
+                    images:new_url
+                })
+            }
         });   
     }
 
@@ -142,7 +146,7 @@ export default class Gallery extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container ref='gallery'>
                 <StatusBar
                     backgroundColor={pDarkColor}
                     barStyle="light-content"

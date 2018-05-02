@@ -31,10 +31,12 @@ export default class Drawer extends React.Component {
             }
             return button
         });
-
-        this.setState({
-            groups: groups
-        })
+        
+        if(this.refs.galleryDrawer) {
+            this.setState({
+                groups: groups
+            })
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -61,7 +63,7 @@ export default class Drawer extends React.Component {
     
     render() {
         return (
-            <Container>
+            <Container ref='gallerDrawer'>
                 <ScrollView>
                     {this.mapItems()}
                 </ScrollView>

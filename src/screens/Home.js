@@ -31,9 +31,11 @@ export default class Home extends React.Component {
         fetch(postsUrl)
             .then((response) => response.json())
             .then((response) => {
-                this.setState({
-                    posts: response
-                })
+                if(this.refs.home) {
+                    this.setState({
+                        posts: response
+                    })
+                }
             })
     }
 
@@ -57,7 +59,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container ref='home'>
                 <StatusBar
                     backgroundColor={pDarkColor}
                     barStyle="light-content"

@@ -19,12 +19,6 @@ export default class About extends React.Component {
         ),
     });
 
-    componentWillMount() {
-        this.setState({
-            pages: []
-        })
-    }
-
     render() {
         return (
             <Container>

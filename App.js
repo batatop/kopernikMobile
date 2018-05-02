@@ -161,23 +161,13 @@ else {
             GeneralContactUs: {
                 screen: ContactUsGeneral,
                 navigationOptions: {
-                    tabBarLabel: "General",
-                    tabBarIcon: ({ tintColor }) => (
-                        <Image
-                            source={require('./src/style/assets/directionsGeneralIcon.png')}
-                        />
-                    ),
+                    tabBarLabel: "General"
                 }
             },
             StaffContactUs: {
                 screen: ContactUsStaff,
                 navigationOptions: {
-                    tabBarLabel: "Staff",
-                    tabBarIcon: ({ tintColor }) => (
-                        <Image
-                            source={require('./src/style/assets/directionsSnowIcon.png')}
-                        />
-                    ),
+                    tabBarLabel: "Staff"
                 }
             },
         },
@@ -235,37 +225,83 @@ const ClearSkyNavigator = StackNavigator(
     }
 )
 
-const DirectionsTabNavigator = TabNavigator(
-    {
-        RegularRoute: {
-            screen: DirectionsRegular,
-            navigationOptions: {
-                tabBarLabel: "Regular Route",
-            }
-        },
-        SnowRoute: {
-            screen: DirectionsSnow,
-            navigationOptions: {
-                tabBarLabel: "Snow Route",
-            }
-        },
-    },
-    {
-        tabBarOptions: {
-            style: {
-                backgroundColor: pColor,
+const DirectionsTabNavigator = null;
+if(Platform.OS === 'ios') {
+    DirectionsTabNavigator = TabNavigator(
+        {
+            RegularRoute: {
+                screen: DirectionsRegular,
+                navigationOptions: {
+                    tabBarLabel: "Regular Route",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/directionsGeneralIcon.png')}
+                        />
+                    ),
+                }
             },
-            labelStyle: {
-                color: tLightColor,
-                fontWeight: "bold",
-                width: Dimensions.get('window').width,
+            SnowRoute: {
+                screen: DirectionsSnow,
+                navigationOptions: {
+                    tabBarLabel: "Snow Route",
+                    tabBarIcon: ({ tintColor }) => (
+                        <Image
+                            source={require('./src/style/assets/directionsSnowIcon.png')}
+                        />
+                    ),
+                }
             },
-            indicatorStyle: {
-                backgroundColor: sColor
+        },
+        {
+            tabBarOptions: {
+                style: {
+                    backgroundColor: pColor,
+                },
+                labelStyle: {
+                    color: tLightColor,
+                    fontWeight: "bold",
+                    width: Dimensions.get('window').width,
+                },
+                indicatorStyle: {
+                    backgroundColor: sColor
+                }
             }
         }
-    }
-)
+    )
+}
+else {
+    DirectionsTabNavigator = TabNavigator(
+        {
+            RegularRoute: {
+                screen: DirectionsRegular,
+                navigationOptions: {
+                    tabBarLabel: "Regular Route"
+                }
+            },
+            SnowRoute: {
+                screen: DirectionsSnow,
+                navigationOptions: {
+                    tabBarLabel: "Snow Route"
+                }
+            },
+        },
+        {
+            tabBarOptions: {
+                style: {
+                    backgroundColor: pColor,
+                },
+                labelStyle: {
+                    color: tLightColor,
+                    fontWeight: "bold",
+                    width: Dimensions.get('window').width,
+                },
+                indicatorStyle: {
+                    backgroundColor: sColor
+                }
+            }
+        }
+    )
+}
 
 const DirectionsNavigator = StackNavigator(
     {
@@ -336,7 +372,7 @@ const MainNavigator = TabNavigator(
         tabBarPosition: "bottom",
         tabBarOptions: {
             showIcon: true,
-            showLabel: false,
+            showLabel: Platform.OS === 'ios' ? true : false,
             style: {
                 backgroundColor: pColor,
             },

@@ -55,10 +55,12 @@ export default class AppCalendar extends React.Component {
             .then((response) => response.json())
             .then((response) => {
                 var standartDataSource=new ListView.DataSource({rowHasChanged: (r1, r2)=>r1!== r2});
-                this.setState({
-                    isLoading:false,
-                    events:standartDataSource.cloneWithRows(response)
-                })
+                if(this.refs.calendar) {
+                    this.setState({
+                        isLoading:false,
+                        events:standartDataSource.cloneWithRows(response)
+                    })
+                }
 
             })
     } 
@@ -111,6 +113,7 @@ export default class AppCalendar extends React.Component {
     render() {
         return (
             <Agenda
+                ref='calendar'
                 items={this.state.items}
                 loadItemsForMonth={this.loadItems.bind(this)}
                 selected={today}

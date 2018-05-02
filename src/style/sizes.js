@@ -1,9 +1,5 @@
 import { Dimensions } from 'react-native'
 
-const { width, height } = Dimensions.get('window')
-console.log(width)
-console.log(height)
-
 // Text sizes
 export const titleSize = 20
 export const subtitleSize = 16
