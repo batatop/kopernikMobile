@@ -140,6 +140,7 @@ if(Platform.OS === 'ios') {
         },
         {
             tabBarOptions: {
+                showLabel: false,
                 style: {
                     backgroundColor: pColor,
                 },
@@ -254,6 +255,7 @@ if(Platform.OS === 'ios') {
         },
         {
             tabBarOptions: {
+                showLabel: false,
                 style: {
                     backgroundColor: pColor,
                 },
@@ -372,7 +374,7 @@ const MainNavigator = TabNavigator(
         tabBarPosition: "bottom",
         tabBarOptions: {
             showIcon: true,
-            showLabel: Platform.OS === 'ios' ? true : false,
+            showLabel: false,
             style: {
                 backgroundColor: pColor,
             },

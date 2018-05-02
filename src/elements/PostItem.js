@@ -4,7 +4,7 @@ import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
 import FlexImage from 'react-native-flex-image';
 import { bLightColor, tDarkColor, black, grey, tBlack, sColor, hColor } from "../style/colors"
-import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, postItemImgHeight, textSize, postItemImgMarginSize, postItemContentPaddingSize } from "../style/sizes"
+import { screenPaddingHorSize, screenPaddingVerSize, postHeight, postImgHeight, textSize, postItemImgMarginSize, postItemContentPaddingSize } from "../style/sizes"
 
 export default class PostItem extends React.Component {
     componentWillMount() {
@@ -56,6 +56,7 @@ export default class PostItem extends React.Component {
 const ItemHighlight = glamorous.touchableHighlight({
     flexDirection: "row",
     flex: 1,
+    minHeight: postHeight,
     marginLeft: screenPaddingHorSize,
     marginRight: screenPaddingHorSize,
     marginTop: screenPaddingVerSize,
