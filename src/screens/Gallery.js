@@ -94,7 +94,13 @@ export default class Gallery extends React.Component {
         let self = this
         let images = []
         let tmpImages = []
-        for(let i = 1; i<=this.state.images.length; i++) {
+        let imageTotal=0
+        if(this.state.images.length>30){
+            imageTotal=30
+        }
+        else
+            imageTotal=this.state.images.length 
+        for(let i = 1; i<=imageTotal; i++) {
             if (i%3 == 0) {
                 tmpImages.push(this.state.images[i-1])
                 images.push(tmpImages)
@@ -103,7 +109,7 @@ export default class Gallery extends React.Component {
             else {
                 tmpImages.push(this.state.images[i-1])
             }
-            if(i==this.state.images.length){
+            if(i==imageTotal){
                 if(i%3!=0){
                     images.push(tmpImages)
                 }
