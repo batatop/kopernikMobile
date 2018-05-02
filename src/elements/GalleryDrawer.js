@@ -63,7 +63,7 @@ export default class Drawer extends React.Component {
     
     render() {
         return (
-            <Container ref='gallerDrawer'>
+            <Container ref='galleryDrawer'>
                 <ScrollView>
                     {this.mapItems()}
                 </ScrollView>
