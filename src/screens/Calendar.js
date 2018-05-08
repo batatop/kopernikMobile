@@ -49,7 +49,7 @@ export default class AppCalendar extends React.Component {
 
 
 
-    componentDidMount(){
+    componentWillMount(){
         let postsUrl = "https://www.googleapis.com/calendar/v3/calendars/3phl0f0rmkj3st8ahuhhss19a0@group.calendar.google.com/events?key=AIzaSyBcugNSaHaIf7j5gYPFs524Aw8HnHsopJU&singleEvents=true&orderBy=startTime&timeMin=" + year + "-"+ month+ "-" + day + "T00:00:00Z&timeMax="+year+2+"-"+"01-01T00:00:00Z"
         fetch(postsUrl)
             .then((response) => response.json())

@@ -1,9 +1,7 @@
 chmod 755 android/gradlew
 
-Pages
-- Home
-- Calendar
-- Gallery
-- Clear Sky
-- About
-- Contact/Directions
+- "Failed to delete: C:..."
+Build the application again.
+
+- "Failed to create: C:..."
+Build the application again.

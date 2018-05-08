@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView,Dimension,Button,Alert, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
+import { SafeAreaView, Dimension, Button, Alert, FlatList, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import ZoomImage from 'react-native-zoom-image';
 import {Easing} from 'react-native'; // import Easing if you want to customize easing function
 import { generalPaddingSize, galleryImgHeight, galleryFocusedImgHeight } from "../style/sizes"
@@ -37,7 +37,8 @@ export default class Gallery extends React.Component {
         }
         this.setState({
             name: groupName,
-            images: []
+            images: [],
+            index: 30
         })
     }
 
@@ -53,7 +54,10 @@ export default class Gallery extends React.Component {
                     var new_url = []
                     for (let i = 0; i < href.length; i++) {
                         if (href[i].includes("jpg")) {
-                            new_url.push(url + href[i].substring(6, href[i].length - 1))
+                            new_url.push({
+                                key: i,
+                                uri: url + href[i].substring(6, href[i].length - 1)
+                            })
                         }
                     }
                     if(this.refs.gallery) {                    
@@ -79,7 +83,10 @@ export default class Gallery extends React.Component {
                 var new_url = []
                 for (let i = 0; i < href.length; i++) {
                     if (href[i].includes("jpg")){
-                        new_url.push(url + href[i].substring(6, href[i].length - 1))
+                        new_url.push({
+                            key: i,
+                            uri: url + href[i].substring(6, href[i].length - 1)
+                        })
                     }
                 }
                 if(this.refs.gallery) {
@@ -92,6 +99,49 @@ export default class Gallery extends React.Component {
             .catch((err) => console.log(err));   
     }
 
+    loadItems() {
+        console.log("mds")
+        if (this.refs.gallery) {
+            this.setState({
+                index: this.state.index + 30
+            })
+        }
+    }
+
+    render() {
+        return (
+            <Container ref='gallery'>
+                <StatusBar
+                    backgroundColor={pDarkColor}
+                    barStyle="light-content"
+                />
+                <FlatList
+                    numColumns={3}
+                    data={this.state.images.slice(0, this.state.index)}
+                    keyExtractor={(item) => item.key}
+                    extraData={this.state}
+                    refreshing={false}
+                    renderItem={({ item }) => 
+                        <ZoomImage
+                            style={{
+                                flex: 1,
+                                height: galleryFocusedImgHeight,
+                                margin: 1
+                            }}
+                            source={{ uri: item.uri }}
+                            imgStyle={{ flex: 1, height: galleryFocusedImgHeight }}
+                            duration={200}
+                            enableScaling={true}
+                            easingFunc={Easing.ease}
+                        />
+                    }
+                    onEndReached={() => this.loadItems()}
+                    onEndReachedThreshold={1}
+                />
+            </Container>
+        );
+    }
+/*
     listImages() {
         let self = this
         let images = []
@@ -165,6 +215,7 @@ export default class Gallery extends React.Component {
             </Container>
         );
     }
+    */
 }
 
 const Container = glamorous.scrollView({
