@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ActivityIndicator, View, ListView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight, FlatList } from 'react-native';
+import { SafeAreaView, ActivityIndicator, View, ListView, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import { Calendar, Agenda } from 'react-native-calendars';
 import { pColor, pLightColor, sColor, hBarColor, white, bColor } from "../style/colors"

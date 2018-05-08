@@ -55,7 +55,7 @@ export default class Gallery extends React.Component {
                     for (let i = 0; i < href.length; i++) {
                         if (href[i].includes("jpg")) {
                             new_url.push({
-                                key: i,
+                                key: "img_" + i,
                                 uri: url + href[i].substring(6, href[i].length - 1)
                             })
                         }
@@ -100,7 +100,6 @@ export default class Gallery extends React.Component {
     }
 
     loadItems() {
-        console.log("mds")
         if (this.refs.gallery) {
             this.setState({
                 index: this.state.index + 30
@@ -118,7 +117,7 @@ export default class Gallery extends React.Component {
                 <FlatList
                     numColumns={3}
                     data={this.state.images.slice(0, this.state.index)}
-                    keyExtractor={(item) => item.key}
+                    keyExtractor={(item) => item.key.toString()}
                     extraData={this.state}
                     refreshing={false}
                     renderItem={({ item }) => 
@@ -133,10 +132,10 @@ export default class Gallery extends React.Component {
                             duration={200}
                             enableScaling={true}
                             easingFunc={Easing.ease}
-                        />
-                    }
+                            />
+                        }
                     onEndReached={() => this.loadItems()}
-                    onEndReachedThreshold={1}
+                    onEndReachedThreshold={0.5}
                 />
             </Container>
         );

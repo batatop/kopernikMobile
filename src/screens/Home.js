@@ -21,19 +21,26 @@ export default class Home extends React.Component {
     });
 
     componentWillMount() {
+        this.handleRefresh = this.handleRefresh.bind(this)
         this.setState({
-            posts: null
+            posts: null,
+            refreshing: false
         })
     }
 
     componentDidMount() {
+        this.makeRequest()
+    }
+
+    makeRequest() {
         let postsUrl = "http://www.kopernik.org/wp-json/wp/v2/posts?_embed"
         fetch(postsUrl)
             .then((response) => response.json())
             .then((response) => {
-                if(this.refs.home) {
+                if (this.refs.home) {
                     this.setState({
-                        posts: response
+                        posts: response,
+                        refreshing: false
                     })
                 }
             })
@@ -58,6 +65,14 @@ export default class Home extends React.Component {
         }
     }
 
+    handleRefresh() {
+        this.setState({
+            refreshing: true
+        }, function() {
+            this.makeRequest()
+        })
+    }
+
     render() {
         return (
             <Container ref='home'>
@@ -69,6 +84,8 @@ export default class Home extends React.Component {
                     <MainImage source={require('../style/assets/homeImg.jpg')} />
                     <FlatList
                         data={this.getPosts()}
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.handleRefresh}
                         renderItem={({ item }) =>
                             <PostItem
                                 navigation={this.props.navigation}
