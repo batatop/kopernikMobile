@@ -62,7 +62,8 @@ export default class Gallery extends React.Component {
                             images: new_url
                         })
                     }
-                });
+                })
+                .catch((err) => console.log(err));
         }
     }
 
@@ -73,21 +74,22 @@ export default class Gallery extends React.Component {
         url=url+name+"/"        
         
         fetch(url).then((resp) => { return resp.text() })
-        .then((text) => {//getLinks()
-            var href = text.match(/href="(.*?)"/g)
-            var new_url = []
-            for (let i = 0; i < href.length; i++) {
-                if (href[i].includes("jpg")){
-                    new_url.push(url + href[i].substring(6, href[i].length - 1))
+            .then((text) => {//getLinks()
+                var href = text.match(/href="(.*?)"/g)
+                var new_url = []
+                for (let i = 0; i < href.length; i++) {
+                    if (href[i].includes("jpg")){
+                        new_url.push(url + href[i].substring(6, href[i].length - 1))
+                    }
                 }
-            }
-            if(this.refs.gallery) {
-                this.setState({
-                    name:name,
-                    images:new_url
-                })
-            }
-        });   
+                if(this.refs.gallery) {
+                    this.setState({
+                        name:name,
+                        images:new_url
+                    })
+                }
+            })
+            .catch((err) => console.log(err));   
     }
 
     listImages() {

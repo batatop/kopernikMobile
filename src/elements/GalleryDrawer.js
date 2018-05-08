@@ -19,18 +19,21 @@ export default class Drawer extends React.Component {
         })
 
         var parent = "http://kopernik.org/wp-content/gallery/"
-        let groups = await fetch(parent).then((resp) => { return resp.text() }).then((text) => {
-            var href = text.match(/href="(.*?)"/g)
-            var new_cat = [];
-            var button = [];
-            for (let i = 1; i < href.length - 1; i++) {
-                new_cat.push(parent + href[i].substring(6, href[i].length - 1))
-                if (!href[i].includes("cache")) {
-                    button.push(href[i].substring(6, href[i].length - 2))
-                }
-            }
-            return button
-        });
+        let groups = await fetch(parent)
+                        .then((resp) => { return resp.text() })
+                        .then((text) => {
+                            var href = text.match(/href="(.*?)"/g)
+                            var new_cat = [];
+                            var button = [];
+                            for (let i = 1; i < href.length - 1; i++) {
+                                new_cat.push(parent + href[i].substring(6, href[i].length - 1))
+                                if (!href[i].includes("cache")) {
+                                    button.push(href[i].substring(6, href[i].length - 2))
+                                }
+                            }
+                            return button
+                        })
+                        .catch((err) => []);
         
         if(this.refs.galleryDrawer) {
             this.setState({

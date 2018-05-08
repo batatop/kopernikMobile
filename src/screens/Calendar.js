@@ -61,8 +61,9 @@ export default class AppCalendar extends React.Component {
                         events:standartDataSource.cloneWithRows(response)
                     })
                 }
-
             })
+            .catch((err) => console.log(err));
+                        
     } 
 
     handleEvents() {
