@@ -2,10 +2,10 @@ import React from 'react';
 import { SafeAreaView, Dimension, Button, Alert, FlatList, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import ZoomImage from 'react-native-zoom-image';
 import {Easing} from 'react-native'; // import Easing if you want to customize easing function
-import { generalPaddingSize, galleryImgHeight, galleryFocusedImgHeight } from "../style/sizes"
+import { generalPaddingSize, galleryImgHeight, galleryFocusedImgHeight, galleryIndex, galleryLoadHeight, screenPaddingHorSize, screenPaddingVerSize, black, textSize } from "../style/sizes"
 
 import glamorous from "glamorous-native";
-import { bColor, pDarkColor, hColor, hBarColor } from "../style/colors"
+import { bColor, pDarkColor, hColor, hBarColor, white } from "../style/colors"
 
 export default class Gallery extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -38,7 +38,8 @@ export default class Gallery extends React.Component {
         this.setState({
             name: groupName,
             images: [],
-            index: 30
+            index: galleryIndex,
+            refreshing: false
         })
     }
 
@@ -60,10 +61,11 @@ export default class Gallery extends React.Component {
                             })
                         }
                     }
-                    if(this.refs.gallery) {                    
+                    if(this.refs.gallery) {
                         this.setState({
                             name: name,
-                            images: new_url
+                            images: new_url,
+                            index: galleryIndex
                         })
                     }
                 })
@@ -72,7 +74,6 @@ export default class Gallery extends React.Component {
     }
 
      componentDidMount() {
-        // var name =this.props.navigation.state.params.cata
         let name = this.state.name
         var url = "http://kopernik.org/wp-content/gallery/"
         url=url+name+"/"        
@@ -92,7 +93,8 @@ export default class Gallery extends React.Component {
                 if(this.refs.gallery) {
                     this.setState({
                         name:name,
-                        images:new_url
+                        images:new_url,
+                        index: galleryIndex
                     })
                 }
             })
@@ -102,7 +104,7 @@ export default class Gallery extends React.Component {
     loadItems() {
         if (this.refs.gallery) {
             this.setState({
-                index: this.state.index + 30
+                index: this.state.index + galleryIndex
             })
         }
     }
@@ -115,11 +117,12 @@ export default class Gallery extends React.Component {
                     barStyle="light-content"
                 />
                 <FlatList
+                    ref="galleryList"
                     numColumns={3}
                     data={this.state.images.slice(0, this.state.index)}
                     keyExtractor={(item) => item.key.toString()}
                     extraData={this.state}
-                    refreshing={false}
+                    refreshing={this.state.refreshing}
                     renderItem={({ item }) => 
                         <ZoomImage
                             style={{
@@ -134,87 +137,15 @@ export default class Gallery extends React.Component {
                             easingFunc={Easing.ease}
                             />
                         }
-                    onEndReached={() => this.loadItems()}
-                    onEndReachedThreshold={0.5}
                 />
+                <LoadMoreButton
+                    onPress={this.loadItems.bind(this)}
+                >
+                    <LoadMoreText>Load more.</LoadMoreText>
+                </LoadMoreButton>
             </Container>
         );
     }
-/*
-    listImages() {
-        let self = this
-        let images = []
-        let tmpImages = []
-        let imageTotal=0
-        if(this.state.images.length>30){
-            imageTotal=30
-        }
-        else
-            imageTotal=this.state.images.length 
-        for(let i = 1; i<=imageTotal; i++) {
-            if (i%3 == 0) {
-                tmpImages.push(this.state.images[i-1])
-                images.push(tmpImages)
-                tmpImages = []
-            }
-            else {
-                tmpImages.push(this.state.images[i-1])
-            }
-            if(i==imageTotal){
-                if(i%3!=0){
-                    images.push(tmpImages)
-                }
-            }
-        }
-        let listView = images.map(function (imgSubset, i) {
-            return(
-                <Row key={"row_"+i}>
-                    {self.rowImages(imgSubset, i)}
-                </Row>
-            )
-        });
-        return listView;
-    }
-
-    rowImages(images, rowIndex) {
-        let self = this
-        let rowImages = images.map(function (imgUrl, i) {
-
-            return (
-                <ZoomImage
-                        key={"zoom_"+"."+i}
-                        style={{
-                            flex: 1,
-                            height: galleryFocusedImgHeight,
-                            margin:1
-                        }}
-                        source={{uri: imgUrl}}
-                        imgStyle={{flex: 1, height: galleryFocusedImgHeight}}
-                        duration={200}
-                        enableScaling={true}
-                        easingFunc={Easing.ease}
-
-                    />
-            )
-        });
-
-        return rowImages
-    }
-
-    render() {
-        return (
-            <Container ref='gallery'>
-                <StatusBar
-                    backgroundColor={pDarkColor}
-                    barStyle="light-content"
-                />
-                <Column>
-                    {this.listImages()}
-                </Column>
-            </Container>
-        );
-    }
-    */
 }
 
 const Container = glamorous.scrollView({
@@ -237,6 +168,26 @@ const ImageContainer = glamorous.touchableHighlight({
     flex: 1,
     backgroundColor: bColor,
     margin: 1,
+})
+
+const LoadMoreButton = glamorous.touchableHighlight({
+    flex: 1,
+    minHeight: galleryLoadHeight,
+    marginLeft: screenPaddingHorSize,
+    marginRight: screenPaddingHorSize,
+    marginTop: screenPaddingVerSize,
+    marginBottom: screenPaddingVerSize,
+    shadowOffset: { width: 5, height: 5 },
+    shadowColor: black,
+    shadowOpacity: 0.2,
+    elevation: 5,
+    backgroundColor: white,
+    justifyContent: "center",
+    alignItems: "center"
+})
+
+const LoadMoreText = glamorous.text({
+    fontSize: textSize
 })
 
 const ListImage = glamorous.image({

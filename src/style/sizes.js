@@ -14,6 +14,7 @@ export const postItemImgMarginSize = 5
 
 // Heights
 export const postHeight = 90
+export const galleryLoadHeight = 50
 export const mainImgHeight = 120
 export const postImgHeight = 200
 export const postItemImgHeight = 80
@@ -23,3 +24,6 @@ export const mapHeight = 350
 
 // Widths
 export const drawerBulletWidth = 10
+
+// Gallery index
+export const galleryIndex = 24
