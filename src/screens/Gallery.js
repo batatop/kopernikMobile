@@ -74,31 +74,36 @@ export default class Gallery extends React.Component {
     }
 
      componentDidMount() {
+        this.makeRequest()
+    }
+
+    makeRequest() {
         let name = this.state.name
         var url = "http://kopernik.org/wp-content/gallery/"
-        url=url+name+"/"        
-        
+        url = url + name + "/"
+
         fetch(url).then((resp) => { return resp.text() })
             .then((text) => {//getLinks()
                 var href = text.match(/href="(.*?)"/g)
                 var new_url = []
                 for (let i = 0; i < href.length; i++) {
-                    if (href[i].includes("jpg")){
+                    if (href[i].includes("jpg")) {
                         new_url.push({
                             key: i,
                             uri: url + href[i].substring(6, href[i].length - 1)
                         })
                     }
                 }
-                if(this.refs.gallery) {
+                if (this.refs.gallery) {
                     this.setState({
-                        name:name,
-                        images:new_url,
-                        index: galleryIndex
+                        name: name,
+                        images: new_url,
+                        index: galleryIndex,
+                        refreshing: false
                     })
                 }
             })
-            .catch((err) => console.log(err));   
+            .catch((err) => console.log(err));
     }
 
     loadItems() {
@@ -106,6 +111,19 @@ export default class Gallery extends React.Component {
             this.setState({
                 index: this.state.index + galleryIndex
             })
+        }
+    }
+
+    LoadMoreButton() {
+        if(this.state.index < this.state.images.length) {
+            return (
+                <LoadMoreButton
+                    onPress={this.loadItems.bind(this)}
+                    underlayColor={hColor}
+                >
+                    <LoadMoreText>Load more.</LoadMoreText>
+                </LoadMoreButton>
+            )
         }
     }
 
@@ -122,7 +140,6 @@ export default class Gallery extends React.Component {
                     data={this.state.images.slice(0, this.state.index)}
                     keyExtractor={(item) => item.key.toString()}
                     extraData={this.state}
-                    refreshing={this.state.refreshing}
                     renderItem={({ item }) => 
                         <ZoomImage
                             style={{
@@ -138,11 +155,7 @@ export default class Gallery extends React.Component {
                             />
                         }
                 />
-                <LoadMoreButton
-                    onPress={this.loadItems.bind(this)}
-                >
-                    <LoadMoreText>Load more.</LoadMoreText>
-                </LoadMoreButton>
+                {this.LoadMoreButton()}
             </Container>
         );
     }
