@@ -27,7 +27,7 @@ export default class About extends React.Component {
                     barStyle="light-content"
                 />
                 <AboutScrollView>
-                    <Title>About the Kopernik Observatory & Science Center{"\n"}</Title>
+                    <Title>About the Kopernik Observatory & Science Center</Title>
                     <Content>
                         The Kopernik Observatory & Science Center opened in 1974,
                         built by the Kopernik Society of Broome County to commemorate
@@ -35,13 +35,13 @@ export default class About extends React.Component {
                         known to the world as Copernicus – the “father” of modern
                         astronomy. Since that time, hundreds of thousands of children
                         and adults have experienced the wonders of science through
-                        the Observatory’s programs.{"\n"}
+                        the Observatory’s programs.
                     </Content>
                     <Content>
                         Located atop a 1740 foot hill in Vestal, NY, 13 miles southwest
                         of Binghamton, the Observatory has been one of the best-sited
                         and best equipped public observatories in the Northeast United
-                        States for over 40 years.{"\n"}
+                        States for over 40 years.
                     </Content>
                     <Content>
                         The Kopernik Observatory & Science Center is the first science
@@ -52,10 +52,10 @@ export default class About extends React.Component {
                         The Observatory is also the home of the Kopernik Astronomical
                         Society (KAS), a group of dedicated observational astronomers.
                         Visitors to the Observatory often will find KAS volunteers
-                        helping at Kopernik programs.{"\n"}
+                        helping at Kopernik programs.
                     </Content>
                     <Subtitle>
-                        Facilities{"\n"}
+                        Facilities
                     </Subtitle>
                     <ListItem>
                         &#9679; 3 Observatory Telescopes{"\n"}
@@ -116,9 +116,9 @@ const Content = glamorous.text({
 
 const Subtitle = glamorous.text({
     fontSize: subtitleSize,
+    paddingBottom: generalPaddingSize,
     paddingLeft: generalPaddingSize,
     paddingRight: generalPaddingSize,
-    paddingBottom: generalPaddingSize,    
 })
 
 const ListItem = glamorous.text({

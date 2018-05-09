@@ -3,7 +3,7 @@ import { SafeAreaView, View, StyleSheet, Text, TouchableHighlight, Image } from 
 import MapView, { Marker } from 'react-native-maps'
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor, black, white } from "../style/colors"
-import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize, mapHeight } from "../style/sizes"
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize, mapHeight, subtitleSize } from "../style/sizes"
 
 export default class DirectionsRegular extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -24,6 +24,7 @@ export default class DirectionsRegular extends React.Component {
             <Container>
                 <DirectionsRegularView>
                     <DirectionsRegularContentView>
+                        <Subtitle>Regular Route Directions</Subtitle>
                         <Content>
                             Take Interstate Route 81 or 88 to the Binghamton area.
                             Follow Route 17 West to Route 26 South (Exit 67s).
@@ -48,11 +49,7 @@ export default class DirectionsRegular extends React.Component {
                                 }}
                                 title={"Kopernik Observatory & Science Center"}
                                 description={"Look Up... and Dream Big!"}
-                        >
-                                <View style={styles.radius}>
-                                    <View style={styles.marker} />
-                                </View>
-                            </Marker>
+                            />
                         </MapView>
                     </MapContainer>
                 </DirectionsRegularView>
@@ -83,9 +80,16 @@ const DirectionsRegularContentView = glamorous.scrollView({
     backgroundColor: white,
 })
 
+const Subtitle = glamorous.text({
+    fontSize: subtitleSize,
+    padding: generalPaddingSize
+})
+
 const Content = glamorous.text({
     fontSize: textSize,
-    padding: generalPaddingSize
+    paddingBottom: generalPaddingSize,
+    paddingLeft: generalPaddingSize,
+    paddingRight: generalPaddingSize
 })
 
 const MapContainer = glamorous.view({

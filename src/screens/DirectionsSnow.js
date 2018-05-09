@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, TouchableHighlight, Image, Dimensions } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor, black, white } from "../style/colors"
-import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize } from "../style/sizes"
+import { generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize, textSize, subtitleSize } from "../style/sizes"
 
 export default class DirectionsSnow extends React.Component {
     static navigationOptions = ({ screenProps, navigation }) => ({
@@ -23,6 +23,7 @@ export default class DirectionsSnow extends React.Component {
             <Container>
                 <DirectionsSnowView>
                     <DirectionsSnowContentView>
+                        <Subtitle>Snow Route Directions</Subtitle>
                         <Content>
                             In the event of icy or snow covered roads this alternative
                             route is longer but not as steep. Just take West Hill Rd. in
@@ -63,9 +64,16 @@ const DirectionsSnowContentView = glamorous.scrollView({
     backgroundColor: white,
 })
 
+const Subtitle = glamorous.text({
+    fontSize: subtitleSize,
+    padding: generalPaddingSize
+})
+
 const Content = glamorous.text({
     fontSize: textSize,
-    padding: generalPaddingSize
+    paddingBottom: generalPaddingSize,
+    paddingLeft: generalPaddingSize,
+    paddingRight: generalPaddingSize
 })
 
 const MapContainer = glamorous.view({
