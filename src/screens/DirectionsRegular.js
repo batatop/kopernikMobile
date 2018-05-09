@@ -23,35 +23,38 @@ export default class DirectionsRegular extends React.Component {
         return (
             <Container>
                 <DirectionsRegularView>
-                    <Content>
-                        Take Interstate Route 81 or 88 to the Binghamton area.
-                        Follow Route 17 West to Route 26 South (Exit 67s).
-                        Proceed 5 miles and turn right at Glenwood Road. (Note
-                        the green observatory sign). Take the first left onto
-                        Underwood Road and proceed 1.8 miles up the hill. Kopernik
-                        Observatory will be visible soon on the left.
-                        {"\n"}
-                    </Content>
-                    <MapView style={styles.map}
-                        initialRegion={{
-                            latitude: 42.002061,
-                            longitude: -76.032772,
-                            latitudeDelta: 0.0922,
-                            longitudeDelta: 0.0421,
-                        }}>
-                        <Marker
-                            coordinate={{
+                    <DirectionsRegularContentView>
+                        <Content>
+                            Take Interstate Route 81 or 88 to the Binghamton area.
+                            Follow Route 17 West to Route 26 South (Exit 67s).
+                            Proceed 5 miles and turn right at Glenwood Road. (Note
+                            the green observatory sign). Take the first left onto
+                            Underwood Road and proceed 1.8 miles up the hill. Kopernik
+                            Observatory will be visible soon on the left.
+                        </Content>
+                    </DirectionsRegularContentView>
+                    <MapContainer>
+                        <MapView style={styles.map}
+                            initialRegion={{
                                 latitude: 42.002061,
                                 longitude: -76.032772,
-                            }}
-                            title={"Kopernik Observatory & Science Center"}
-                            description={"Look Up... and Dream Big!"}
-                    >
-                            <View style={styles.radius}>
-                                <View style={styles.marker} />
-                            </View>
-                        </Marker>
-                    </MapView>
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}>
+                            <Marker
+                                coordinate={{
+                                    latitude: 42.002061,
+                                    longitude: -76.032772,
+                                }}
+                                title={"Kopernik Observatory & Science Center"}
+                                description={"Look Up... and Dream Big!"}
+                        >
+                                <View style={styles.radius}>
+                                    <View style={styles.marker} />
+                                </View>
+                            </Marker>
+                        </MapView>
+                    </MapContainer>
                 </DirectionsRegularView>
             </Container>
         );
@@ -63,7 +66,11 @@ const Container = glamorous.safeAreaView({
     backgroundColor: bColor,
 })
 
-const DirectionsRegularView = glamorous.scrollView({
+const DirectionsRegularView = glamorous.safeAreaView({
+    flex: 1,
+})
+
+const DirectionsRegularContentView = glamorous.scrollView({
     flex: 1,
     marginLeft: screenPaddingHorSize,
     marginRight: screenPaddingHorSize,
@@ -78,9 +85,11 @@ const DirectionsRegularView = glamorous.scrollView({
 
 const Content = glamorous.text({
     fontSize: textSize,
-    paddingTop: generalPaddingSize,
-    paddingLeft: generalPaddingSize,
-    paddingRight: generalPaddingSize
+    padding: generalPaddingSize
+})
+
+const MapContainer = glamorous.view({
+    padding: generalPaddingSize
 })
 
 const styles = StyleSheet.create({

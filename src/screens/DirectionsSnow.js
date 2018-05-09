@@ -22,15 +22,19 @@ export default class DirectionsSnow extends React.Component {
         return (
             <Container>
                 <DirectionsSnowView>
-                    <Content>
-                        In the event of icy or snow covered roads this alternative
-                        route is longer but not as steep. Just take West Hill Rd. in
-                        Vestal Center. Then take a left on Ridge Rd. follow by another
-                        left on Underwood Rd. Kopernik Observatory will be on your
-                        right.
-                        {"\n"}
-                    </Content>
-                    <RouteImage source={require("../style/assets/snowRouteMap.png")} />
+                    <DirectionsSnowContentView>
+                        <Content>
+                            In the event of icy or snow covered roads this alternative
+                            route is longer but not as steep. Just take West Hill Rd. in
+                            Vestal Center. Then take a left on Ridge Rd. follow by another
+                            left on Underwood Rd. Kopernik Observatory will be on your
+                            right.
+                            {"\n"}
+                        </Content>
+                    </DirectionsSnowContentView>
+                    <MapContainer>
+                        <RouteImage source={require("../style/assets/snowRouteMap.png")} />
+                    </MapContainer>
                 </DirectionsSnowView>               
             </Container>
         );
@@ -43,6 +47,10 @@ const Container = glamorous.safeAreaView({
 })
 
 const DirectionsSnowView = glamorous.scrollView({
+    flex: 1
+})
+
+const DirectionsSnowContentView = glamorous.scrollView({
     flex: 1,
     marginLeft: screenPaddingHorSize,
     marginRight: screenPaddingHorSize,
@@ -57,9 +65,11 @@ const DirectionsSnowView = glamorous.scrollView({
 
 const Content = glamorous.text({
     fontSize: textSize,
-    paddingTop: generalPaddingSize,
-    paddingLeft: generalPaddingSize,
-    paddingRight: generalPaddingSize
+    padding: generalPaddingSize
+})
+
+const MapContainer = glamorous.view({
+    padding: generalPaddingSize
 })
 
 const RouteImage = glamorous.image({
