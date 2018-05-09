@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Dimension, Button, Alert, FlatList, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
+import { SafeAreaView, Dimension, Button, Alert, FlatList, View, Text, StatusBar, Image, AppRegistry, ScrollView, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
 import ZoomImage from 'react-native-zoom-image';
 import {Easing} from 'react-native'; // import Easing if you want to customize easing function
 import { generalPaddingSize, galleryImgHeight, galleryFocusedImgHeight, galleryIndex, galleryLoadHeight, screenPaddingHorSize, screenPaddingVerSize, black, textSize } from "../style/sizes"
@@ -39,7 +39,8 @@ export default class Gallery extends React.Component {
             name: groupName,
             images: [],
             index: galleryIndex,
-            refreshing: false
+            refreshing: false,
+            loading: true
         })
     }
 
@@ -65,7 +66,9 @@ export default class Gallery extends React.Component {
                         this.setState({
                             name: name,
                             images: new_url,
-                            index: galleryIndex
+                            index: galleryIndex,
+                            refreshing: false,
+                            loading: false
                         })
                     }
                 })
@@ -99,7 +102,8 @@ export default class Gallery extends React.Component {
                         name: name,
                         images: new_url,
                         index: galleryIndex,
-                        refreshing: false
+                        refreshing: false,
+                        loading: false
                     })
                 }
             })
@@ -128,41 +132,60 @@ export default class Gallery extends React.Component {
     }
 
     render() {
-        return (
-            <Container ref='gallery'>
-                <StatusBar
-                    backgroundColor={pDarkColor}
-                    barStyle="light-content"
-                />
-                <FlatList
-                    ref="galleryList"
-                    numColumns={3}
-                    data={this.state.images.slice(0, this.state.index)}
-                    keyExtractor={(item) => item.key.toString()}
-                    extraData={this.state}
-                    renderItem={({ item }) => 
-                        <ZoomImage
-                            style={{
-                                flex: 1,
-                                height: galleryFocusedImgHeight,
-                                margin: 1
-                            }}
-                            source={{ uri: item.uri }}
-                            imgStyle={{ flex: 1, height: galleryFocusedImgHeight }}
-                            duration={200}
-                            enableScaling={true}
-                            easingFunc={Easing.ease}
-                            />
-                        }
-                />
-                {this.LoadMoreButton()}
-            </Container>
-        );
+        if(this.state.loading) {
+            return (
+                <Container ref='gallery'>
+                    <StatusBar
+                        backgroundColor={pDarkColor}
+                        barStyle="light-content"
+                    />
+                    <ActivityIndicatorContainer>
+                        <ActivityIndicator size="large" />
+                    </ActivityIndicatorContainer>
+                </Container>
+            )
+        }
+        else {
+            return (
+                <Container ref='gallery'>
+                    <StatusBar
+                        backgroundColor={pDarkColor}
+                        barStyle="light-content"
+                    />
+                    <FlatList
+                        ref="galleryList"
+                        numColumns={3}
+                        data={this.state.images.slice(0, this.state.index)}
+                        keyExtractor={(item) => item.key.toString()}
+                        extraData={this.state}
+                        renderItem={({ item }) => 
+                            <ZoomImage
+                                style={{
+                                    flex: 1,
+                                    height: galleryFocusedImgHeight,
+                                    margin: 1
+                                }}
+                                source={{ uri: item.uri }}
+                                imgStyle={{ flex: 1, height: galleryFocusedImgHeight }}
+                                duration={200}
+                                enableScaling={true}
+                                easingFunc={Easing.ease}
+                                />
+                            }
+                    />
+                    {this.LoadMoreButton()}
+                </Container>
+            );
+        }
     }
 }
 
 const Container = glamorous.scrollView({
     flex: 1,
+})
+
+const ActivityIndicatorContainer = glamorous.view({
+    padding: generalPaddingSize
 })
 
 const Row = glamorous.view({

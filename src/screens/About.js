@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text, Image, ScrollView, Dimensions, StatusBar, TouchableHighlight } from 'react-native';
 import glamorous from "glamorous-native";
 import HTMLView from 'react-native-htmlview';
-import { bColor, pColor, sColor, pDarkColor, hBarColor } from "../style/colors"
+import { bColor, pColor, sColor, pDarkColor, hBarColor, white, black } from "../style/colors"
 import { titleSize, subtitleSize, textSize, generalPaddingSize, screenPaddingHorSize, screenPaddingVerSize } from "../style/sizes"
 
 export default class About extends React.Component {
@@ -26,7 +26,7 @@ export default class About extends React.Component {
                     backgroundColor={pDarkColor}
                     barStyle="light-content"
                 />
-                <ScrollView>
+                <AboutScrollView>
                     <Title>About the Kopernik Observatory & Science Center{"\n"}</Title>
                     <Content>
                         The Kopernik Observatory & Science Center opened in 1974,
@@ -75,7 +75,7 @@ export default class About extends React.Component {
                         &#9679; 24 Acres{"\n"}
                         &#9679; Portable Planetarium{"\n"}
                     </ListItem>
-                </ScrollView>
+                </AboutScrollView>
             </Container>
         );
     }
@@ -84,24 +84,46 @@ export default class About extends React.Component {
 const Container = glamorous.safeAreaView({
     flex: 1,
     backgroundColor: bColor,
-    paddingLeft: screenPaddingHorSize,
-    paddingRight: screenPaddingHorSize,
-    paddingTop: screenPaddingVerSize,
-    paddingBottom: screenPaddingVerSize,
+})
+
+const AboutScrollView = glamorous.scrollView({
+    flex: 1,
+    marginLeft: screenPaddingHorSize,
+    marginRight: screenPaddingHorSize,
+    marginTop: screenPaddingVerSize,
+    marginBottom: screenPaddingVerSize,
+    shadowOffset: { width: 5, height: 5 },
+    shadowColor: black,
+    shadowOpacity: 0.2,
+    elevation: 5,
+    backgroundColor: white,
 })
 
 const Title = glamorous.text({
     fontSize: titleSize,
+    paddingTop: generalPaddingSize,
+    paddingBottom: generalPaddingSize,
+    paddingLeft: generalPaddingSize,
+    paddingRight: generalPaddingSize,  
 })
 
 const Content = glamorous.text({
     fontSize: textSize,
+    paddingLeft: generalPaddingSize,
+    paddingRight: generalPaddingSize,
+    paddingBottom: generalPaddingSize,  
 })
 
 const Subtitle = glamorous.text({
     fontSize: subtitleSize,
+    paddingLeft: generalPaddingSize,
+    paddingRight: generalPaddingSize,
+    paddingBottom: generalPaddingSize,    
 })
 
 const ListItem = glamorous.text({
     fontSize: textSize,
+    paddingLeft: generalPaddingSize,    
+    paddingRight: generalPaddingSize,    
+    paddingBottom: generalPaddingSize,    
 })

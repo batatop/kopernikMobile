@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StatusBar, ScrollView, Text, TouchableHighlight, Image } from 'react-native';
+import { SafeAreaView, FlatList, StatusBar, ScrollView, Text, TouchableHighlight, Image, ActivityIndicator } from 'react-native';
 import glamorous from "glamorous-native";
 import { bColor, pDarkColor, hBarColor } from "../style/colors"
 import { generalPaddingSize, mainImgHeight } from "../style/sizes"
@@ -24,7 +24,8 @@ export default class Home extends React.Component {
         this.handleRefresh = this.handleRefresh.bind(this)
         this.setState({
             posts: null,
-            refreshing: false
+            refreshing: false,
+            loading: true
         })
     }
 
@@ -40,7 +41,8 @@ export default class Home extends React.Component {
                 if (this.refs.home) {
                     this.setState({
                         posts: response,
-                        refreshing: false
+                        refreshing: false,
+                        loading: false
                     })
                 }
             })
@@ -74,28 +76,46 @@ export default class Home extends React.Component {
     }
 
     render() {
-        return (
-            <Container ref='home'>
-                <StatusBar
-                    backgroundColor={pDarkColor}
-                    barStyle="light-content"
-                />
-                <ScrollContainer>
-                    <MainImage source={require('../style/assets/homeImg.jpg')} />
-                    <FlatList
-                        data={this.getPosts()}
-                        refreshing={this.state.refreshing}
-                        onRefresh={this.handleRefresh}
-                        renderItem={({ item }) =>
-                            <PostItem
-                                navigation={this.props.navigation}
-                                post={item}
-                            />
-                        }
+        if(this.state.loading) {
+            return(
+                <Container ref='home'>
+                    <StatusBar
+                        backgroundColor={pDarkColor}
+                        barStyle="light-content"
                     />
-                </ScrollContainer>
-            </Container>
-        );
+                    <ScrollContainer>
+                        <MainImage source={require('../style/assets/homeImg.jpg')} />
+                        <ActivityIndicatorContainer>
+                            <ActivityIndicator size="large" />
+                        </ActivityIndicatorContainer>
+                    </ScrollContainer>
+                </Container>
+            )
+        }
+        else {
+            return (
+                <Container ref='home'>
+                    <StatusBar
+                        backgroundColor={pDarkColor}
+                        barStyle="light-content"
+                    />
+                    <ScrollContainer>
+                        <MainImage source={require('../style/assets/homeImg.jpg')} />
+                        <FlatList
+                            data={this.getPosts()}
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.handleRefresh}
+                            renderItem={({ item }) =>
+                                <PostItem
+                                    navigation={this.props.navigation}
+                                    post={item}
+                                />
+                            }
+                        />
+                    </ScrollContainer>
+                </Container>
+            );
+        }
     }
 }
 
@@ -106,6 +126,10 @@ const Container = glamorous.safeAreaView({
 const ScrollContainer = glamorous.scrollView({
     flex: 1,
     backgroundColor: bColor
+})
+
+const ActivityIndicatorContainer = glamorous.view({
+    padding: generalPaddingSize
 })
 
 const MainImage = glamorous.image({
