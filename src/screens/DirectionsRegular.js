@@ -63,7 +63,7 @@ const Container = glamorous.safeAreaView({
     backgroundColor: bColor,
 })
 
-const DirectionsRegularView = glamorous.safeAreaView({
+const DirectionsRegularView = glamorous.scrollView({
     flex: 1,
 })
 
