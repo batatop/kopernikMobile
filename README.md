@@ -23,7 +23,7 @@ cd kopernikMobile
 npm install
 ```
 
-After you install the dependencies, go to ```node_modules/glamorous-native/src```
+After you install the dependencies, go to ```/node_modules/glamorous-native/src```
 inside the project folder. Find ```react-native-elements.js``` and change the 
 file with the following:
 ```
@@ -88,24 +88,21 @@ export default Object.keys(ReactNativeElementMap)
 [npm]:https://www.npmjs.com/
 [here]:https://nodejs.org/en/download/
 
-## To Run
+## To Build
 
 ### Android
 
-```
-react-native run-android
-```
+  - You can download the APK here: 'https://drive.google.com/open?id=1UASd0IqUiGveDR_tdGUPN4Mdq5IcLqVI'. When you download it, you can click on it to install.
 
 ### iOS
-```
-react-native run-ios
-```
 
-## Build for Production
-
-Android(APK): https://facebook.github.io/react-native/docs/signed-apk-android.html
-
-iOS: https://facebook.github.io/react-native/docs/running-on-device.html#building-your-app-for-production
+  - Open ```/ios/kopernikMobile.xcworkspace``` inside your project folder.
+  - On the left side, you should see 'kopernikMobile' and 'Pods'. Click 'kopernikMobile'. Then go to 'General' tab in the middle. In the signg tab, add your development account. In our case team should be 'Kopernik Soc...'.
+  - When XCode is opened, go to Product > Scheme > Edit Scheme. You can find it on the top bar. When the window pops up, click 'Run' tab on the left side. Make 'Build Configuration', 'Release'. Then click 'Close'.
+  - Plug your phone. On the top side, you should see a box that says: kopernikMobile > [Device Name]. Change [Device Name] with your phone's name.
+  - Build the program with the arrow on the top side.
+  
+More info: 'https://facebook.github.io/react-native/docs/getting-started.html'. Click 'Building with Native Code' tab before reading. 
 
 ## Troubleshooting
 
