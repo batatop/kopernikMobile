@@ -101,6 +101,12 @@ react-native run-android
 react-native run-ios
 ```
 
+## Build for Production
+
+Android(APK): https://facebook.github.io/react-native/docs/signed-apk-android.html
+
+iOS: https://facebook.github.io/react-native/docs/running-on-device.html#building-your-app-for-production
+
 ## Troubleshooting
 
 - When you run ```react-native run-android```, if packager won't start and it keeps on loading forever:
@@ -109,4 +115,4 @@ react-native run-ios
   3. ```react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res```
   4. Then run the program regularly by ```react-native run-android```
 - If you get an error while installing the application, delete the old one if you have installed it before.
-- "Failed to delete/create: C:..." Build the application again.
+- "Failed to delete/create: C:...": Build the application again.
